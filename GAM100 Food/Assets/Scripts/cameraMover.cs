@@ -22,7 +22,7 @@ public class camera_move : MonoBehaviour
             {
                 current_game = home;
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 current_game = counter;
             }
@@ -31,7 +31,7 @@ public class camera_move : MonoBehaviour
             {
                 current_game = burger;
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            if (Input.GetKeyDown(KeyCode.Alpha4))
             {
                 current_game = milkshake;
             }
@@ -40,7 +40,7 @@ public class camera_move : MonoBehaviour
             {
                 current_game = salad;
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha6))
+            if (Input.GetKeyDown(KeyCode.Alpha6))
             {
                 current_game = chopping;
             }
@@ -49,7 +49,7 @@ public class camera_move : MonoBehaviour
             {
                 current_game = baking;
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha8))
+            if (Input.GetKeyDown(KeyCode.Alpha8))
             {
                 current_game = fries;
             }
