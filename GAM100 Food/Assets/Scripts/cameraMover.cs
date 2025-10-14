@@ -5,7 +5,7 @@ public class camera_move : MonoBehaviour
     public GameObject current_game;
 
     [SerializeField]
-    public GameObject home, counter, burger, milkshake, salad, chopping, baking, fries, chopping2;
+    public GameObject home, counter, burger, milkshake, salad, chopping, baking, fries, smash;
 
     void Start()
     {
@@ -56,7 +56,7 @@ public class camera_move : MonoBehaviour
             moveCamera(current_game.transform);
             if (Input.GetKeyDown(KeyCode.Alpha9))
             {
-                current_game = chopping2;
+                current_game = smash;
             }
             
         }
