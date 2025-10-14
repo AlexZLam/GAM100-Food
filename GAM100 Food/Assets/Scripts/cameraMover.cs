@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class camera_move : MonoBehaviour
 {
-    private GameObject current_game;
+    public GameObject current_game;
 
     [SerializeField]
-    private GameObject home, counter, burger, milkshake, salad, chopping, baking, fries, chopping2;
+    public GameObject home, counter, burger, milkshake, salad, chopping, baking, fries, chopping2;
 
     void Start()
     {
