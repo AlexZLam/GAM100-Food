@@ -4,10 +4,10 @@ using UnityEngine.UI;
 public class Baking : MonoBehaviour
 {
     public camera_move camera_Move;
-    [SerializeField]
+    public GameObject slider;
     private float time = 5.0f;
     private float countdown;
-
+   
     [SerializeField]
     private Button button;
 
@@ -15,7 +15,12 @@ public class Baking : MonoBehaviour
 
     void Start()
     {
+
+        slider.GetComponent<Slider>().maxValue = 5;
+        slider.GetComponent<Slider>().value = countdown;
+        slider.SetActive(false);
         button.enabled = false;
+        slider.GetComponent<Slider>().enabled = false;
         button.GetComponent<Image>().enabled = false;
         countdown = time;
         button.onClick.AddListener(OnButtonClick);
@@ -23,22 +28,15 @@ public class Baking : MonoBehaviour
     
     void Update()
     {
-        if(camera_Move. current_game == camera_Move.baking)
-        {
-             button.enabled = true;
-             button.GetComponent<Image>().enabled = true;
-        }
-           
-        else
-        {
-            button.enabled = false;
-            button.GetComponent<Image>().enabled = false;
-        }
+        slider.GetComponent<Slider>().value = countdown;
+
+        setBakingActive();
             
         if (isCountingDown)
         {
             Timer();
         }
+        //Debug.Log(countdown);
     }
 
     private void Timer()
@@ -56,5 +54,44 @@ public class Baking : MonoBehaviour
         countdown = time;
         isCountingDown = true;
         Debug.Log("Button clicked, countdown started.");
+        float sliderValue = slider.GetComponent<Slider>().value;
+
+        // Check if slider is between 0.5 and 2.0
+        if (sliderValue >= 0.5f && sliderValue <= 2.0f)
+        {
+            isCountingDown = false;
+            button.enabled = false;
+
+            Debug.Log("Button clicked while slider is between 0.5 and 2.0!");
+            // You can add any special behavior here
+        }       
     }
+
+    private void setBakingActive()
+    {
+        if (camera_Move.current_game == camera_Move.baking)
+        {
+            button.enabled = true;
+            button.GetComponent<Image>().enabled = true;
+        }
+
+        else
+        {
+            button.enabled = false;
+            button.GetComponent<Image>().enabled = false;
+        }
+        if (camera_Move.current_game == camera_Move.baking)
+        {
+            slider.SetActive(true);
+            slider.GetComponent<Slider>().enabled = true;
+        }
+
+        else
+        {
+            slider.SetActive(false);
+            slider.GetComponent<Slider>().enabled = false;
+        }
+    }
+   
+
 }
