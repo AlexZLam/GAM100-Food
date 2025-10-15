@@ -7,7 +7,15 @@ public class Burgere : MonoBehaviour
     public camera_move camera_Move;
     public GameObject burger;
     [SerializeField]
-    private GameObject bun, bun1, tomato, lettuce, cheese, onion;
+    private GameObject bun, bun1, tomato, lettuce, cheese, onion, plate;
+
+    [SerializeField]
+    private float plateSpeed = 5f;
+
+    [SerializeField]
+    private float plateMinX = 5f;  // Left boundary
+    [SerializeField]
+    private float plateMaxX = 30f; // Right boundary
 
     private bool startGame = false;
 
@@ -33,6 +41,7 @@ public class Burgere : MonoBehaviour
 
     void Update()
     {
+
         setBurgerActive();
 
         if (burger.activeSelf && startY - fallSpeed >= 8)
