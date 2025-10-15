@@ -1,11 +1,12 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PointerController : MonoBehaviour
 {
     public camera_move camera_Move;
 
-    [Header ("Points")]
+    [Header ("Transfroms")]
     [SerializeField]
     private Transform _pointa;
     [SerializeField] 
@@ -17,11 +18,15 @@ public class PointerController : MonoBehaviour
 
     [Header("MoveSpeed")]
     [SerializeField]
-    private float _movespeed = 100f;
+    private float _movespeed;
 
     [Header("GameObjects")]
     [SerializeField]
-    private GameObject parentobject;
+    private GameObject _parentobject;
+
+    [Header("Button")]
+    [SerializeField]
+    private Button _startbutton;
 
     private float _direction = 1f;
     private Vector3 _targetposition;
@@ -36,11 +41,11 @@ public class PointerController : MonoBehaviour
     {
         if( camera_Move.current_game == camera_Move.smash)
         {
-            parentobject.SetActive (true);
+            _parentobject.SetActive (true);
         }
         else
         {
-            parentobject.SetActive(false);
+            _parentobject.SetActive(false);
         }
 
             //Move the pointer towards the target position
@@ -63,6 +68,8 @@ public class PointerController : MonoBehaviour
         {
             CheckSuccess();
         }
+
+        _startbutton.onClick.AddListener(ButtonPress);
     }
 
     void CheckSuccess()
@@ -76,5 +83,11 @@ public class PointerController : MonoBehaviour
         {
             Debug.Log("Fail!");
         }
+    }
+
+    void ButtonPress()
+    {
+        // Set Move Speed
+        _movespeed = 2000f;
     }
 }
