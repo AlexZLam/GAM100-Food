@@ -17,18 +17,26 @@ public class Burgere : MonoBehaviour
     [SerializeField]
     private float plateMaxX = 26.46f; // Right boundary
 
-    private bool startGame = false;
 
     float rand;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Collider2D bunC = bun.GetComponent<Collider2D>();
+        Collider2D bun1C = bun1.GetComponent<Collider2D>();
+        Collider2D lettuceC = lettuce.GetComponent<Collider2D>();
+        Collider2D tomatoC = tomato.GetComponent<Collider2D>();
+        Collider2D cheeseC = cheese.GetComponent<Collider2D>();
+        Collider2D plateC = plate.GetComponent<Collider2D>();
+
         Vector3 startPos = new Vector3(18, 16);
         GameObject[] ingredients = { bun, bun1, tomato, lettuce, cheese, onion };
 
         foreach (GameObject ingredient in ingredients)
         {
+
             ingredient.transform.position = startPos;
+
         }
 
         rand = Random.Range(9.68f, 26.46f);
@@ -41,26 +49,70 @@ public class Burgere : MonoBehaviour
 
     void Update()
     {
-
         setBurgerActive();
+        MovePlate();
 
         if (burger.activeSelf && startY - fallSpeed >= 8)
         {
             fallSpeed += 2f * Time.deltaTime;
             bun.transform.position = new Vector3(rand, startY - fallSpeed);
+            if()
         }
         else if (startY - fallSpeed >= 8)
         {
             startY = 16f;
             fallSpeed = 0f;
             fallSpeed += 2f * Time.deltaTime;
-            bun.transform.position = new Vector3(rand, startY - fallSpeed);
+            lettuce.transform.position = new Vector3(rand, startY - fallSpeed);
+        }
+        else if (startY - fallSpeed >= 8)
+        {
+            startY = 16f;
+            fallSpeed = 0f;
+            fallSpeed += 2f * Time.deltaTime;
+            tomato.transform.position = new Vector3(rand, startY - fallSpeed);
+        }
+        else if (startY - fallSpeed >= 8)
+        {
+            startY = 16f;
+            fallSpeed = 0f;
+            fallSpeed += 2f * Time.deltaTime;
+            onion.transform.position = new Vector3(rand, startY - fallSpeed);
+        }
+        else if (startY - fallSpeed >= 8)
+        {
+            startY = 16f;
+            fallSpeed = 0f;
+            fallSpeed += 2f * Time.deltaTime;
+            cheese.transform.position = new Vector3(rand, startY - fallSpeed);
+        }
+        else if (startY - fallSpeed >= 8)
+        {
+            startY = 16f;
+            fallSpeed = 0f;
+            fallSpeed += 2f * Time.deltaTime;
+            bun1.transform.position = new Vector3(rand, startY - fallSpeed);
         }
     }
+    private void MovePlate()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+        Vector3 platePos = plate.transform.position;
+
+        platePos.x += horizontalInput * plateSpeed * Time.deltaTime;
+        platePos.x = Mathf.Clamp(platePos.x, plateMinX, plateMaxX);
+
+        plate.transform.position = platePos;
+    }
+
+
 
     private void setBurgerActive()
     {
         burger.SetActive(camera_Move.current_game == camera_Move.burger);
-
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
     }
 }
