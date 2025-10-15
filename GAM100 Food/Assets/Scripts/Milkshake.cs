@@ -8,6 +8,7 @@ public class Milkshake : MonoBehaviour
     public camera_move camera_Move;
     public Button spamclick_button;
     public Button start_button;
+    public GameObject milkshake;
     public float timer = 10f;
     public int click_goal = 100;
 
@@ -62,6 +63,6 @@ public class Milkshake : MonoBehaviour
 
     private void setMilkshakeActive()
     {
-        gameObject.SetActive(camera_Move.current_game == camera_Move.milkshake);
+        milkshake.SetActive(camera_Move.current_game == camera_Move.milkshake);
     }
 }
