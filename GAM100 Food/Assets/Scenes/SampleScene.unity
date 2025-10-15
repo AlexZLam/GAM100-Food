@@ -1504,7 +1504,7 @@ MonoBehaviour:
   _pointb: {fileID: 1036317566}
   _safezone: {fileID: 1519369875}
   _pointertransform: {fileID: 1549503273}
-  _movespeed: 2000
+  _movespeed: 0
   _parentobject: {fileID: 1020767869}
   _startbutton: {fileID: 1956236755}
 --- !u!1 &1517926730
