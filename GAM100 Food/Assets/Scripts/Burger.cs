@@ -13,9 +13,9 @@ public class Burgere : MonoBehaviour
     private float plateSpeed = 5f;
 
     [SerializeField]
-    private float plateMinX = 5f;  // Left boundary
+    private float plateMinX = 9.68f;  // Left boundary
     [SerializeField]
-    private float plateMaxX = 30f; // Right boundary
+    private float plateMaxX = 26.46f; // Right boundary
 
     private bool startGame = false;
 

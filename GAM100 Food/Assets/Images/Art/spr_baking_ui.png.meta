@@ -46,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -233,7 +233,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spr_baking_ui_0: 6988438023156284281
+      spr_baking_ui_1: 1281691176995626575
+      spr_baking_ui_2: -6056659165493414408
+      spr_baking_ui_3: -30748672965566283
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
