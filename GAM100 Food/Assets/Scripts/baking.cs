@@ -68,7 +68,12 @@ public class Baking : MonoBehaviour
 
         if (countdown <= 0f)
         {
-            isCountingDown = false;
+            //isCountingDown = false;
+            countdown = time;
+            isCountingDown = true;
+            Debug.Log("Button clicked, countdown started.");
+
+            float sliderValue = sliderComponent.value;
             Debug.Log("Timer finished!");
         }
     }
