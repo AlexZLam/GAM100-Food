@@ -2398,6 +2398,10 @@ MonoBehaviour:
   lettuce: {fileID: 2000392559}
   cheese: {fileID: 1536148053}
   onion: {fileID: 663479073}
+  plate: {fileID: 0}
+  plateSpeed: 5
+  plateMinX: 5
+  plateMaxX: 30
 --- !u!114 &1502168878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2413,6 +2417,7 @@ MonoBehaviour:
   camera_Move: {fileID: 2095876017}
   spamclick_button: {fileID: 1618686420}
   start_button: {fileID: 1577952034}
+  milkshake: {fileID: 153182348}
   timer: 10
   click_goal: 100
 --- !u!1 &1507967838
@@ -2551,19 +2556,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507967838}
   m_CullTransparentMesh: 1
-  m_Script: {fileID: 11500000, guid: 162cf10e00ddc534ba33a46a0c7879eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera_Move: {fileID: 2095876017}
-  _start: {fileID: 100557019}
-  _position1: {fileID: 926140863}
-  _position2: {fileID: 1094553402}
-  _position3: {fileID: 1416135175}
-  _position4: {fileID: 1525403652}
-  _position5: {fileID: 1622060495}
-  _parentobject: {fileID: 1342641022}
-  _screenposition: {x: 0, y: 0, z: 0}
-  _worldposition: {x: 0, y: 0, z: 0}
 --- !u!1 &1517926730
 GameObject:
   m_ObjectHideFlags: 0
