@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
@@ -77,7 +78,14 @@ public class PointerController : MonoBehaviour
         // Check if the pointer is withing the safe zone
         if (RectTransformUtility.RectangleContainsScreenPoint(_safezone, _pointertransform.position, null))
         {
-            Debug.Log("Success!");
+           if(_movespeed == 0f)
+            {
+                return;
+            }
+           if(_movespeed == 2000f)
+            {
+                Debug.Log("Success!");
+            }
         }
         else
         {
