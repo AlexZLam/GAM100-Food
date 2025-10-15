@@ -9,7 +9,8 @@ public class Burgere : MonoBehaviour
     [SerializeField]
     private GameObject bun, bun1, tomato, lettuce, cheese, onion;
 
-    public int fallSpeed = 2;
+    private bool startGame = false; 
+
     float rand;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,14 +28,23 @@ public class Burgere : MonoBehaviour
     }
 
     // Update is called once per frame
+    private float fallSpeed = 0f;
+    private float startY = 16f;
+
     void Update()
     {
         setBurgerActive();
-        fallSpeed *= (int)Time.deltaTime;
-        bun1.transform.position = new Vector3(rand, fallSpeed);
+
+        if (burger.activeSelf)
+        {
+            fallSpeed += 2f * Time.deltaTime;
+            bun1.transform.position = new Vector3(rand, startY - fallSpeed);
+        }
     }
+
     private void setBurgerActive()
     {
-        burger.SetActive(camera_Move.current_game == camera_Move.burger);
+       burger.SetActive(camera_Move.current_game == camera_Move.burger);
+
     }
 }
