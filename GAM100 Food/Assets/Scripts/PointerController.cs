@@ -80,10 +80,13 @@ public class PointerController : MonoBehaviour
         {
            if(_movespeed == 0f)
             {
+                // if move speed is 0 dont reaturn intill it is moving
                 return;
             }
            if(_movespeed == 2000f)
             {
+                _movespeed = 0f;
+                // if move speed is 2000 say its a success
                 Debug.Log("Success!");
             }
         }
