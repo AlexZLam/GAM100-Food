@@ -33,18 +33,30 @@ public class SaladMix : MonoBehaviour
     {
         if (camera_Move.current_game == camera_Move.salad)
         {
-            _parentobject.SetActive(true);
+            _parentobject.SetActive(true); // if the camera is on salad area
         }
         else
         {
-            _parentobject.SetActive(false);
+            _parentobject.SetActive(false); // if camera is off of salad area
         }
-
+         // Get the Mouse position and the world mouse position
         _screenposition = Input.mousePosition;
-        _screenposition.z = Camera.main.nearClipPlane + 1;
+        //_screenposition.z = Camera.main.nearClipPlane + 1;
+        //_worldposition = Camera.main.ScreenToWorldPoint(_screenposition);
+        //transform.position = _worldposition;
 
-        _worldposition = Camera.main.ScreenToWorldPoint(_screenposition);
+        if (Input.GetMouseButtonDown(0))
+        {
+            
+        }
+        SaladMixer();
+    }
 
-        transform.position = _worldposition;
+    private void SaladMixer()
+    {
+        if(_screenposition == _start.transform.position)
+        {
+            Debug.Log("Succed");
+        }
     }
 }
