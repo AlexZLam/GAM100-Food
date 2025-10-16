@@ -16,7 +16,7 @@ public class Chopping : MonoBehaviour
 
     public GameObject knife;
     public GameObject[] slice_x_position_objs;
-    public float slice_tolerance = 5f;
+    public float slice_tolerance = 15f;
 
     private int chops_current = 0;
     private bool[] slice_bools;
@@ -74,16 +74,16 @@ public class Chopping : MonoBehaviour
 
     private void setChoppingActive()
     {
-        bool camera_on_game = camera_Move.current_game == camera_Move.milkshake;
-        if (camera_on_game && game_started == false)
-        {
-            restartGame();
-        }
-        else if(!camera_on_game && game_started == true)
-        {
-            game_started = false;
-        }
-        chopping.SetActive(camera_on_game);
+        //bool camera_on_game = camera_Move.current_game == camera_Move.chopping;
+        //if (camera_on_game && game_started == false)
+        //{
+        //    restartGame();
+        //}
+        //else if(!camera_on_game && game_started == true)
+        //{
+        //    game_started = false;
+        //}
+        chopping.SetActive(camera_Move.current_game == camera_Move.chopping);
     }
 
     private void myMouseLeftClick(Vector3 mouse_position)
