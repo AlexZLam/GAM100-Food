@@ -515,6 +515,7 @@ GameObject:
   - component: {fileID: 100557021}
   - component: {fileID: 100557022}
   - component: {fileID: 100557023}
+  - component: {fileID: 100557024}
   m_Layer: 5
   m_Name: start
   m_TagString: Untagged
@@ -659,6 +660,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _finish: 0
+--- !u!50 &100557024
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100557019}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &153182348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,6 +1609,7 @@ GameObject:
   - component: {fileID: 926140865}
   - component: {fileID: 926140866}
   - component: {fileID: 926140867}
+  - component: {fileID: 926140868}
   m_Layer: 5
   m_Name: position 1
   m_TagString: Untagged
@@ -1725,6 +1754,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _finish: 0
+--- !u!50 &926140868
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926140863}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1012232196
 GameObject:
   m_ObjectHideFlags: 0
@@ -2102,6 +2158,7 @@ GameObject:
   - component: {fileID: 1094553404}
   - component: {fileID: 1094553405}
   - component: {fileID: 1094553406}
+  - component: {fileID: 1094553407}
   m_Layer: 5
   m_Name: position 2
   m_TagString: Untagged
@@ -2246,6 +2303,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _finish: 0
+--- !u!50 &1094553407
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094553402}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1096419985
 GameObject:
   m_ObjectHideFlags: 0
@@ -2782,6 +2866,7 @@ GameObject:
   - component: {fileID: 1416135177}
   - component: {fileID: 1416135178}
   - component: {fileID: 1416135179}
+  - component: {fileID: 1416135180}
   m_Layer: 5
   m_Name: position 3
   m_TagString: Untagged
@@ -2926,6 +3011,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _finish: 0
+--- !u!50 &1416135180
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416135175}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1502168873
 GameObject:
   m_ObjectHideFlags: 0
@@ -3360,6 +3472,7 @@ GameObject:
   - component: {fileID: 1525403654}
   - component: {fileID: 1525403655}
   - component: {fileID: 1525403656}
+  - component: {fileID: 1525403657}
   m_Layer: 5
   m_Name: position 4
   m_TagString: Untagged
@@ -3504,6 +3617,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _finish: 0
+--- !u!50 &1525403657
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525403652}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1536148053
 GameObject:
   m_ObjectHideFlags: 0
@@ -4049,6 +4189,7 @@ GameObject:
   - component: {fileID: 1622060497}
   - component: {fileID: 1622060498}
   - component: {fileID: 1622060499}
+  - component: {fileID: 1622060500}
   m_Layer: 5
   m_Name: position 5
   m_TagString: Untagged
@@ -4193,6 +4334,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _finish: 0
+--- !u!50 &1622060500
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622060495}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1749544173
 GameObject:
   m_ObjectHideFlags: 0
