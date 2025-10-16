@@ -5,11 +5,20 @@ public class BurgerDestroy : MonoBehaviour
     [SerializeField] private GameObject plate;
     public Burgere burgereScript;
 
+    public plate plateScript;
+
     private bool onPlate = false;
     private bool fell = false;
     private bool isDestroyed = false;
     private Vector3 platePos;
 
+    public bool bun1;
+    public bool bun;
+    public bool lettuce;
+    public bool tomatto;
+    public bool cheese;
+    public bool onion;
+  
     void Start()
     {
         
@@ -25,6 +34,7 @@ public class BurgerDestroy : MonoBehaviour
 
         if (fell && !isDestroyed)
         {
+            onPlate = false;
             isDestroyed = true;
             burgereScript?.OnIngredientFell(); // Notify Burgere script
 
@@ -33,7 +43,7 @@ public class BurgerDestroy : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Plate"))
+        if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Plate"))
         {
             onPlate = true;
         }
@@ -41,5 +51,31 @@ public class BurgerDestroy : MonoBehaviour
         {
             fell = true;
         }
+
+        if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Tomato"))
+        {
+
+        }
+        if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Bun"))
+        {
+
+        }
+        if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Bun1"))
+        {
+
+        }
+        if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Cheese"))
+        {
+
+        }
+        if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Lettuce"))
+        {
+
+        }
+        if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Onion"))
+        {
+
+        }
+
     }
 }

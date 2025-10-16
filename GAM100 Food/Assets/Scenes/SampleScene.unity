@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 19023702}
   m_Layer: 0
   m_Name: Tomato
-  m_TagString: Untagged
+  m_TagString: Tomato
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -268,6 +268,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plate: {fileID: 1998567891}
   burgereScript: {fileID: 1502168877}
+  plateScript: {fileID: 0}
+  bun1: 0
+  bun: 0
+  lettuce: 0
+  tomatto: 0
+  cheese: 0
+  onion: 0
 --- !u!50 &19023702
 Rigidbody2D:
   serializedVersion: 4
@@ -310,7 +317,7 @@ GameObject:
   - component: {fileID: 36897012}
   m_Layer: 0
   m_Name: Bun
-  m_TagString: Untagged
+  m_TagString: Bun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -445,6 +452,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plate: {fileID: 1998567891}
   burgereScript: {fileID: 1502168877}
+  plateScript: {fileID: 0}
+  bun1: 0
+  bun: 0
+  lettuce: 0
+  tomatto: 0
+  cheese: 0
+  onion: 0
 --- !u!50 &36897012
 Rigidbody2D:
   serializedVersion: 4
@@ -1020,7 +1034,7 @@ GameObject:
   - component: {fileID: 663479078}
   m_Layer: 0
   m_Name: Onion
-  m_TagString: Untagged
+  m_TagString: Onion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1155,6 +1169,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plate: {fileID: 1998567891}
   burgereScript: {fileID: 1502168877}
+  plateScript: {fileID: 0}
+  bun1: 0
+  bun: 0
+  lettuce: 0
+  tomatto: 0
+  cheese: 0
+  onion: 0
 --- !u!50 &663479078
 Rigidbody2D:
   serializedVersion: 4
@@ -1299,7 +1320,7 @@ GameObject:
   - component: {fileID: 872428100}
   m_Layer: 0
   m_Name: Bun (1)
-  m_TagString: Untagged
+  m_TagString: Bun1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1434,6 +1455,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plate: {fileID: 1998567891}
   burgereScript: {fileID: 1502168877}
+  plateScript: {fileID: 0}
+  bun1: 0
+  bun: 0
+  lettuce: 0
+  tomatto: 0
+  cheese: 0
+  onion: 0
 --- !u!50 &872428100
 Rigidbody2D:
   serializedVersion: 4
@@ -3659,7 +3687,7 @@ GameObject:
   - component: {fileID: 1536148058}
   m_Layer: 0
   m_Name: Cheese
-  m_TagString: Untagged
+  m_TagString: Cheese
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3794,6 +3822,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plate: {fileID: 1998567891}
   burgereScript: {fileID: 1502168877}
+  plateScript: {fileID: 0}
+  bun1: 0
+  bun: 0
+  lettuce: 0
+  tomatto: 0
+  cheese: 0
+  onion: 0
 --- !u!50 &1536148058
 Rigidbody2D:
   serializedVersion: 4
@@ -4980,7 +5015,7 @@ GameObject:
   - component: {fileID: 2000392564}
   m_Layer: 0
   m_Name: Lettuce
-  m_TagString: Untagged
+  m_TagString: Lettuce
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5115,6 +5150,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plate: {fileID: 1998567891}
   burgereScript: {fileID: 1502168877}
+  plateScript: {fileID: 0}
+  bun1: 0
+  bun: 0
+  lettuce: 0
+  tomatto: 0
+  cheese: 0
+  onion: 0
 --- !u!50 &2000392564
 Rigidbody2D:
   serializedVersion: 4

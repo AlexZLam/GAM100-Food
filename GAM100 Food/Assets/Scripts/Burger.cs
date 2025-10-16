@@ -7,8 +7,8 @@ public class Burgere : MonoBehaviour
     [SerializeField] private GameObject bun, bun1, tomato, lettuce, cheese, onion, plate;
 
     [SerializeField] private float plateSpeed = 5f;
-    [SerializeField] private float plateMinX = 10f;
-    [SerializeField] private float plateMaxX = 24f;
+    [SerializeField] private float plateMinX = 15f;
+    [SerializeField] private float plateMaxX = 23f;
 
     private GameObject[] ingredients;
     private int currentIngredientIndex = 0;
