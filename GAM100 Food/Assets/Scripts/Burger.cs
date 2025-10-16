@@ -22,12 +22,7 @@ public class Burgere : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Collider2D bunC = bun.GetComponent<Collider2D>();
-        Collider2D bun1C = bun1.GetComponent<Collider2D>();
-        Collider2D lettuceC = lettuce.GetComponent<Collider2D>();
-        Collider2D tomatoC = tomato.GetComponent<Collider2D>();
-        Collider2D cheeseC = cheese.GetComponent<Collider2D>();
-        Collider2D plateC = plate.GetComponent<Collider2D>();
+        
 
         Vector3 startPos = new Vector3(18, 16);
         GameObject[] ingredients = { bun, bun1, tomato, lettuce, cheese, onion };
@@ -51,12 +46,35 @@ public class Burgere : MonoBehaviour
     {
         setBurgerActive();
         MovePlate();
+        ingredientFall();
 
+      
+    }
+    private void MovePlate()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+        Vector3 platePos = plate.transform.position;
+
+        platePos.x += horizontalInput * plateSpeed * Time.deltaTime;
+        platePos.x = Mathf.Clamp(platePos.x, plateMinX, plateMaxX);
+
+        plate.transform.position = platePos;
+    }
+
+
+    private void setBurgerActive()
+    {
+        burger.SetActive(camera_Move.current_game == camera_Move.burger);
+    }
+    
+    public void ingredientFall()
+    {
         if (burger.activeSelf && startY - fallSpeed >= 8)
         {
+            startY = 16f;
+            fallSpeed = 0f;
             fallSpeed += 2f * Time.deltaTime;
             bun.transform.position = new Vector3(rand, startY - fallSpeed);
-            if()
         }
         else if (startY - fallSpeed >= 8)
         {
@@ -93,26 +111,5 @@ public class Burgere : MonoBehaviour
             fallSpeed += 2f * Time.deltaTime;
             bun1.transform.position = new Vector3(rand, startY - fallSpeed);
         }
-    }
-    private void MovePlate()
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        Vector3 platePos = plate.transform.position;
-
-        platePos.x += horizontalInput * plateSpeed * Time.deltaTime;
-        platePos.x = Mathf.Clamp(platePos.x, plateMinX, plateMaxX);
-
-        plate.transform.position = platePos;
-    }
-
-
-
-    private void setBurgerActive()
-    {
-        burger.SetActive(camera_Move.current_game == camera_Move.burger);
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
     }
 }
