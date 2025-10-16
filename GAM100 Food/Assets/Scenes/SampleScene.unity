@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 19023698}
   - component: {fileID: 19023699}
   - component: {fileID: 19023700}
+  - component: {fileID: 19023701}
   m_Layer: 0
   m_Name: Tomato
   m_TagString: Untagged
@@ -252,6 +253,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &19023701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19023697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a502e7eb218f8940a34345bef1572b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plate: {fileID: 1998567891}
+  fell: 0
 --- !u!1 &36897007
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,6 +278,7 @@ GameObject:
   - component: {fileID: 36897008}
   - component: {fileID: 36897009}
   - component: {fileID: 36897010}
+  - component: {fileID: 36897011}
   m_Layer: 0
   m_Name: Bun
   m_TagString: Untagged
@@ -386,6 +402,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &36897011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36897007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a502e7eb218f8940a34345bef1572b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plate: {fileID: 1998567891}
+  fell: 0
 --- !u!1 &92528116
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,6 +867,7 @@ GameObject:
   - component: {fileID: 663479074}
   - component: {fileID: 663479075}
   - component: {fileID: 663479076}
+  - component: {fileID: 663479077}
   m_Layer: 0
   m_Name: Onion
   m_TagString: Untagged
@@ -960,6 +991,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &663479077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663479073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a502e7eb218f8940a34345bef1572b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plate: {fileID: 1998567891}
+  fell: 0
 --- !u!1 &703840047
 GameObject:
   m_ObjectHideFlags: 0
@@ -1073,6 +1118,7 @@ GameObject:
   - component: {fileID: 872428096}
   - component: {fileID: 872428097}
   - component: {fileID: 872428098}
+  - component: {fileID: 872428099}
   m_Layer: 0
   m_Name: Bun (1)
   m_TagString: Untagged
@@ -1196,6 +1242,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &872428099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872428095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a502e7eb218f8940a34345bef1572b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plate: {fileID: 1998567891}
+  fell: 0
 --- !u!1 &922174298
 GameObject:
   m_ObjectHideFlags: 0
@@ -2993,6 +3053,7 @@ GameObject:
   - component: {fileID: 1536148054}
   - component: {fileID: 1536148055}
   - component: {fileID: 1536148056}
+  - component: {fileID: 1536148057}
   m_Layer: 0
   m_Name: Cheese
   m_TagString: Untagged
@@ -3116,6 +3177,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1536148057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536148053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a502e7eb218f8940a34345bef1572b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plate: {fileID: 1998567891}
+  fell: 0
 --- !u!1 &1549503272
 GameObject:
   m_ObjectHideFlags: 0
@@ -4045,7 +4120,7 @@ GameObject:
   - component: {fileID: 1998567894}
   m_Layer: 0
   m_Name: Plate
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4177,6 +4252,7 @@ GameObject:
   - component: {fileID: 2000392560}
   - component: {fileID: 2000392561}
   - component: {fileID: 2000392562}
+  - component: {fileID: 2000392563}
   m_Layer: 0
   m_Name: Lettuce
   m_TagString: Untagged
@@ -4300,6 +4376,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2000392563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000392559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a502e7eb218f8940a34345bef1572b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plate: {fileID: 1998567891}
+  fell: 0
 --- !u!1 &2095876012
 GameObject:
   m_ObjectHideFlags: 0

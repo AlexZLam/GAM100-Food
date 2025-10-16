@@ -2,37 +2,42 @@ using UnityEngine;
 
 public class BurgerDestroy : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject plate;
+    [SerializeField] private GameObject plate;
+    public Burgere burgereScript;
 
     private bool onPlate = false;
-    public bool fell = false;
-    Vector3 platePos;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private bool fell = false;
+    private bool isDestroyed = false;
+    private Vector3 platePos;
+
     void Start()
     {
-        platePos = plate.transform.position;
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(onPlate)
+        platePos = plate.transform.position;
+        if (onPlate)
         {
-            gameObject.transform.position = platePos;
+            transform.position = platePos;
         }
-        if(fell)
+
+        if (fell && !isDestroyed)
         {
+            isDestroyed = true;
+            burgereScript?.OnIngredientFell(); // Notify Burgere script
             Destroy(gameObject);
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Plate"))
+        if (collision.gameObject.CompareTag("Plate"))
         {
             onPlate = true;
         }
-        else
+        else if (collision.gameObject.CompareTag("Ground"))
         {
             fell = true;
         }
