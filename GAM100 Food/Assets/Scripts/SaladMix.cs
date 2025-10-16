@@ -3,7 +3,9 @@ using static UnityEditor.SceneView;
 
 public class SaladMix : MonoBehaviour
 {
+    [Header("Scripts")]
     public camera_move camera_Move;
+    public SaladCircle _saladcircle;
 
     [Header("Points")]
     [SerializeField]
@@ -37,7 +39,6 @@ public class SaladMix : MonoBehaviour
     private void Awake()
     {
         _prefab2 = Instantiate(_prefab, new Vector3(0, 0, 0), Quaternion.identity); // Create a game object
-        //= GameObject.Find("Hitbox SaladMix(Clone)");
         _prefab2.SetActive(false);
     }
 
@@ -60,11 +61,9 @@ public class SaladMix : MonoBehaviour
         }
         _prefab2.transform.position = _worldposition; 
 
-
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        Debug.Log("Success");
+        if(_saladcircle._finish == true)
+        {
+            Debug.Log("Success");
+        }
     }
 }
