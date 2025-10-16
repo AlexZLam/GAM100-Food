@@ -29,6 +29,10 @@ public class SaladMix : MonoBehaviour
     [SerializeField]
     private Vector3 _worldposition;
 
+    [Header("Prefab")]
+    [SerializeField]
+    private GameObject _prefab;
+
     private void Update()
     {
         if (camera_Move.current_game == camera_Move.salad)
