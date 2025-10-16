@@ -1,16 +1,30 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.U2D;
+using UnityEngine.UI;
+using static Unity.Burst.Intrinsics.X86;
+using static Unity.Collections.AllocatorManager;
+using static UnityEditor.SceneView;
+using static UnityEngine.Rendering.HableCurve;
 
 public class Chopping : MonoBehaviour
 {
+    public camera_move camera_Move;
+    public GameObject chopping;
+
     public GameObject knife;
-    public int[] slice_positions;
-    public int slice_tolerance;
+    public GameObject[] slice_x_position_objs;
+    public float slice_tolerance = 5f;
 
     private int chops_current = 0;
     private bool[] slice_bools;
-    private int chops_goal = 7;
+    private float[] slice_positions;
+    private int chops_goal;
     private bool game_won;
     private bool game_started;
+    private bool knife_currently_chopping = false;
 
     /*
     chopping pseudocode
@@ -29,17 +43,111 @@ public class Chopping : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        slice_positions = new int[chops_goal];
+
+        chops_goal = slice_x_position_objs.Length;
+        slice_positions = new float[chops_goal];
+        for(int i = 0; i < slice_positions.Length; i++)
+        {
+            slice_positions[i] = slice_x_position_objs[i].transform.position.x;
+        }
         slice_bools = new bool[chops_goal];
         for(int i = 0; i < slice_bools.Length; i++)
         {
             slice_bools[i] = false;
         }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!knife_currently_chopping)
+        {
+            knife.transform.position = new Vector3 (Input.mousePosition.x, knife.transform.position.y);
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            myMouseLeftClick(Input.mousePosition);
+        }
+        setChoppingActive();
+    }
+
+    private void setChoppingActive()
+    {
+        bool camera_on_game = camera_Move.current_game == camera_Move.milkshake;
+        if (camera_on_game && game_started == false)
+        {
+            restartGame();
+        }
+        else if(!camera_on_game && game_started == true)
+        {
+            game_started = false;
+        }
+        chopping.SetActive(camera_on_game);
+    }
+
+    private void myMouseLeftClick(Vector3 mouse_position)
+    {/*
+        click = chop = knife sprite goes down(have knife slip into two segments, front and back)
+        - if chopped wrong, lose / restart
+    - if chopped correctly, draw a line at that spot
+       -draw line: sprite for each line
+    -to check if chopped correctly, see if x of mouse is in the right spot(array of x coords for
+      where the chops should be, check if mouse is within[tolerance] pixels left / right of that)  
+      AND if i've chopped here already, dont count it toward the total (have array of bools that aligns 
+       w positions, true if been chopped before)
+    - if all chops done, win*/
+
+        //ADD KNIFE ANIMATION
+        //check if chopped correctly
+        float chop_x = mouse_position.x;
+        bool successful_chop = false;
+        int arr_pos = 0;
+        float upper_limit = 0;
+        float lower_limit = 0;
+        for(int i = 0; i < slice_positions.Length; i++)
+        {
+            upper_limit = slice_positions[i] + slice_tolerance;
+            lower_limit = slice_positions[i] - slice_tolerance;
+            if (chop_x > lower_limit && chop_x < upper_limit)
+            {
+                successful_chop = true;
+                arr_pos = i;
+            }
+
+            if (successful_chop)
+            {
+                //if ive already chopped here
+                if (slice_bools[arr_pos])
+                {
+                    break;
+                }
+
+                //ADD DRAW LINE
+                chops_current += 1;
+                if (chops_current == chops_goal)
+                {
+                    Debug.Log("you won!");
+                    game_won = true;
+                }
+            }
+            else
+            {
+                Debug.Log("bad chop, you lost.");
+                restartGame();
+            }
+        }
+    }
+
+    private void restartGame()
+    {
+        game_started = true;
+        chops_current = 0;
+        for (int i = 0; i < slice_bools.Length; i++)
+        {
+            slice_bools[i] = false;
+        }
+        game_won = false;
+        Debug.Log("Chopping restarted");
     }
 }
