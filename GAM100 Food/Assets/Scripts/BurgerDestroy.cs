@@ -27,7 +27,7 @@ public class BurgerDestroy : MonoBehaviour
         {
             isDestroyed = true;
             burgereScript?.OnIngredientFell(); // Notify Burgere script
-            Destroy(gameObject);
+
         }
     }
 
