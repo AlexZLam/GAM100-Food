@@ -45,22 +45,13 @@ public class SaladMix : MonoBehaviour
         }
          // Get the Mouse position and the world mouse position
         _screenposition = Input.mousePosition;
-        //_screenposition.z = Camera.main.nearClipPlane + 1;
-        //_worldposition = Camera.main.ScreenToWorldPoint(_screenposition);
-        //transform.position = _worldposition;
+        _screenposition.z = Camera.main.nearClipPlane + 1;
+        _worldposition = Camera.main.ScreenToWorldPoint(_screenposition);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            
-        }
-        SaladMixer();
     }
 
-    private void SaladMixer()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if(_screenposition == _start.transform.position)
-        {
-            Debug.Log("Succed");
-        }
+        Debug.Log("Success");
     }
 }
