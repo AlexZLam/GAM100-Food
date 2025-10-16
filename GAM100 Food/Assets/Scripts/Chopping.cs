@@ -46,10 +46,13 @@ public class Chopping : MonoBehaviour
 
         chops_goal = slice_x_position_objs.Length;
         slice_positions = new float[chops_goal];
-        for(int i = 0; i < slice_positions.Length; i++)
+        Debug.Log("Chopping slice positions: " );
+        for (int i = 0; i < slice_positions.Length; i++)
         {
             slice_positions[i] = slice_x_position_objs[i].transform.position.x;
+            Debug.Log(slice_positions[i]);
         }
+        
         slice_bools = new bool[chops_goal];
         for(int i = 0; i < slice_bools.Length; i++)
         {
@@ -61,13 +64,14 @@ public class Chopping : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 mouse_position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (!knife_currently_chopping)
         {
-            knife.transform.position = new Vector3 (Input.mousePosition.x, knife.transform.position.y);
+            knife.transform.position = new Vector3 (mouse_position.x, knife.transform.position.y);
         }
         if (Input.GetMouseButtonDown(0))
         {
-            myMouseLeftClick(Input.mousePosition);
+            myMouseLeftClick(mouse_position);
         }
         setChoppingActive();
     }
@@ -101,41 +105,49 @@ public class Chopping : MonoBehaviour
         //ADD KNIFE ANIMATION
         //check if chopped correctly
         float chop_x = mouse_position.x;
+        Debug.Log("chop position: " + chop_x + ", total chops: " + chops_current);
         bool successful_chop = false;
         int arr_pos = 0;
         float upper_limit = 0;
         float lower_limit = 0;
-        for(int i = 0; i < slice_positions.Length; i++)
+        Debug.Log("loop: ");
+        for (int i = 0; i < slice_positions.Length; i++)
         {
             upper_limit = slice_positions[i] + slice_tolerance;
             lower_limit = slice_positions[i] - slice_tolerance;
+            Debug.Log("upper_limit = " + upper_limit + " lower_limit = " + lower_limit);
             if (chop_x > lower_limit && chop_x < upper_limit)
             {
                 successful_chop = true;
                 arr_pos = i;
+                Debug.Log("break");
+                break;
+                
             }
+        }
 
-            if (successful_chop)
+        if (successful_chop)
+        {
+            Debug.Log("arr_pos = " + arr_pos + "successful chop: slice_bools[arr_pos] = " + slice_bools[arr_pos]);
+            //if ive already chopped here
+            if (slice_bools[arr_pos] == false)
             {
-                //if ive already chopped here
-                if (slice_bools[arr_pos])
-                {
-                    break;
-                }
-
-                //ADD DRAW LINE
                 chops_current += 1;
+                Debug.Log("chops_current incremented: " + chops_current);
+                slice_bools[arr_pos] = true;
                 if (chops_current == chops_goal)
                 {
                     Debug.Log("you won!");
                     game_won = true;
                 }
             }
-            else
-            {
-                Debug.Log("bad chop, you lost.");
-                restartGame();
-            }
+            //ADD DRAW LINE
+            
+        }
+        else
+        {
+            Debug.Log("bad chop, you lost.");
+            restartGame();
         }
     }
 
