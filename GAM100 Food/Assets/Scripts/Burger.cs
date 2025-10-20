@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Burgere : MonoBehaviour
+public class Burger : MonoBehaviour
 {
     [Header("Scripts")]
     public camera_move camera_Move;
@@ -24,6 +24,8 @@ public class Burgere : MonoBehaviour
     private float rand;
     [Header("Finished Bool")]
     public bool done;
+
+    public bool Burgerdone;
 
     void Start()
     {
@@ -73,7 +75,7 @@ public class Burgere : MonoBehaviour
                 {
                     rand = Random.Range(ingredientMinX, ingredientMaxX);
                 }
-                else if(done == true)
+                else if(Burgerdone == true)
                 {
                     Debug.Log("Complete");
                 }

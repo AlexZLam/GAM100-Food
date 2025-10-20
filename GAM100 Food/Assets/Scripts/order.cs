@@ -18,7 +18,7 @@ public class order : MonoBehaviour
     void Start()
     {
         isBurger = burgerScript.Burgerdone;
-        isChopping = choppingScript.
+        isChopping = choppingScript.chopping_done;
     }
 
     // Update is called once per frame
