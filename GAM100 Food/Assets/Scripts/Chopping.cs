@@ -28,7 +28,8 @@ public class Chopping : MonoBehaviour
     private bool[] slice_bools;
     private float[] slice_positions;
     private int chops_goal;
-    
+    private float knife_start_height;
+
     private bool game_started;
     private bool knife_currently_chopping = false;
 
@@ -49,7 +50,7 @@ public class Chopping : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        knife_start_height = knife.transform.position.y;
         chops_goal = slice_x_position_objs.Length;
         slice_positions = new float[chops_goal];
         //Debug.Log("chops_goal: "+ chops_goal + " Chopping slice positions: " );
@@ -74,6 +75,16 @@ public class Chopping : MonoBehaviour
         if (!knife_currently_chopping)
         {
             knife.transform.position = new Vector3 (mouse_position.x, knife.transform.position.y);
+        }
+        else
+        {
+            knife.transform.position = new Vector3(knife.transform.position.x, knife.transform.position.y - (30f * Time.deltaTime));
+            
+            if(knife.transform.position.y <= -3f)
+            {
+                knife_currently_chopping = false;
+                knife.transform.position = new Vector3(mouse_position.x, knife_start_height);
+            }
         }
         if (Input.GetMouseButtonDown(0))
         {
@@ -109,6 +120,7 @@ public class Chopping : MonoBehaviour
     - if all chops done, win*/
 
         //ADD KNIFE ANIMATION
+        knife_currently_chopping = true;
         //check if chopped correctly
         float chop_x = mouse_position.x;
         //Debug.Log("chop position: " + chop_x + ", total chops: " + chops_current);
