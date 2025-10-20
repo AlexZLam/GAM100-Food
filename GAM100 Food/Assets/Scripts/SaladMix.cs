@@ -5,7 +5,7 @@ public class SaladMix : MonoBehaviour
 {
     [Header("Scripts")]
     public camera_move camera_Move;
-    public SaladCircle _saladcircle;
+    public SaladCircle5 _saladcircle;
 
     [Header("Points")]
     [SerializeField]
@@ -36,6 +36,9 @@ public class SaladMix : MonoBehaviour
     private GameObject _prefab;
     private GameObject _prefab2;
 
+    [Header("Done")]
+    public bool _saladmix_done = false;
+
     private void Awake()
     {
         _prefab2 = Instantiate(_prefab, new Vector3(0, 0, 0), Quaternion.identity); // Create a game object
@@ -59,12 +62,11 @@ public class SaladMix : MonoBehaviour
             _prefab2.SetActive(false);
             
         }
-        _prefab2.transform.position = _worldposition; 
-
-        if(_saladcircle._finish == true)
+        _prefab2.transform.position = _worldposition;
+        
+        if(_saladcircle._sixth == true)
         {
-            Debug.Log("Success");
-            _saladcircle._finish = false;
+            _saladmix_done = true;
         }
     }
 }

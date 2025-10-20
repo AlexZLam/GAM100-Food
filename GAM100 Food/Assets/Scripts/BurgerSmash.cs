@@ -30,12 +30,12 @@ public class BurgerSmash : MonoBehaviour
     private Button _startbutton;
 
     [Header("Game Done")]
-    public bool burgersmash_done;
+    public bool BurgerSmashDone;
 
     private float _direction = 1f;
     private Vector3 _targetposition;
 
-    public bool BurgerSmashDone;
+
  
 
     private void Start()
