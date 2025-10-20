@@ -29,6 +29,9 @@ public class BurgerSmash : MonoBehaviour
     [SerializeField]
     private Button _startbutton;
 
+    [Header("Game Done")]
+    public bool burgersmash_done;
+
     private float _direction = 1f;
     private Vector3 _targetposition;
  

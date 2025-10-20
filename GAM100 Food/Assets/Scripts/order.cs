@@ -19,6 +19,7 @@ public class order : MonoBehaviour
     {
         isBurger = burgerScript.Burgerdone;
         isChopping = choppingScript.chopping_done;
+        isSmash = smashScript.burgersmash_done;
     }
 
     // Update is called once per frame
