@@ -2,22 +2,27 @@ using UnityEngine;
 
 public class Burgere : MonoBehaviour
 {
+    [Header("Scripts")]
     public camera_move camera_Move;
+    [Header("Game Objects")]
     public GameObject burger;
     [SerializeField] private GameObject bun, bun1, tomato, lettuce, cheese, onion, plate;
 
+    [Header("Speed")]
     [SerializeField] private float plateSpeed = 10f;
+    [Header("Plate Movement")]
     private float plateMinX = 5;
     private float plateMaxX = 30f;
     private float ingredientMaxX = 26f;
     private float ingredientMinX = 9f;
 
-
+    [Header("Objects fall")]
     private GameObject[] ingredients;
     private int currentIngredientIndex = 0;
     private float fallSpeed = 0f;
     private float startY = 16f;
     private float rand;
+    [Header("Finished Bool")]
     public bool done;
 
     void Start()

@@ -11,11 +11,15 @@ using static UnityEngine.Rendering.HableCurve;
 
 public class Chopping : MonoBehaviour
 {
+    [Header("Scripts")]
     public camera_move camera_Move;
+    [Header("Parent Object")]
     public GameObject chopping;
 
+    [Header("Game Objects")]
     public GameObject knife;
     public GameObject[] slice_x_position_objs;
+    [Header("Tolerance")]
     public float slice_tolerance = 15f;
 
     private int chops_current = 0;

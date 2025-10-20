@@ -3,22 +3,29 @@ using UnityEngine.UI;
 
 public class Baking : MonoBehaviour
 {
+    [Header("Scripts")]
     public camera_move camera_Move;
+
+    [Header("Game Objects")]
     public GameObject slider;
     public GameObject baking;
 
+    [Header("UI Elemnets")]
     [SerializeField]
     private Button button;
     [SerializeField]
     private RawImage dark;
 
+    [Header("Time")]
     private const float time = 5.0f;
     private const float successThreshold = 0.9f;
 
+    [Header("Countdowns")]
     private float countdown;
     private bool isCountingDown = false;
     private float alpha;
 
+    [Header("Color Swap")]
     private Color newColor;
     private CanvasGroup sliderGroup;
     private Slider sliderComponent;

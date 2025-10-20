@@ -5,10 +5,14 @@ using UnityEngine.UIElements.Experimental;
 
 public class Milkshake : MonoBehaviour
 {
+    [Header("Scripts")]
     public camera_move camera_Move;
+    [Header("Buttons")]
     public Button spamclick_button;
     public Button start_button;
+    [Header("Parent Object")]
     public GameObject milkshake;
+    [Header("Time to beat")]
     public float timer = 10f;
     public int click_goal = 100;
 
