@@ -11,7 +11,6 @@ public class order : MonoBehaviour
     public Milkshake milkshakeScript;
     public Chopping choppingScript;
     public BurgerSmash smashScript;
-<<<<<<< HEAD
     public camera_move camera_Move;
 
     [SerializeField]
@@ -20,36 +19,16 @@ public class order : MonoBehaviour
     private GameObject orderObj;
 
     private TextMeshProUGUI orderTxt; // ? Use TMP component
-=======
-    public SaladMix saladScript;
-
-    private bool isBurger;
-    private bool isChopping;
-    private bool isBaking;
-    private bool isSmash;
-    private bool isMilkshake;
-    private bool isMixed;
->>>>>>> cef6db37dcbafebdfc5eec0ed374d66360cbb6eb
 
     private int randOrderNum;
     private List<string> activeOrders = new List<string>();
 
     void Start()
     {
-<<<<<<< HEAD
         orderTxt = orderTextObject.GetComponent<TextMeshProUGUI>(); // ? Correct TMP component
         randOrderNum = Random.Range(1, 9); // Generate between 1 and 8 meals
         startOrder();
         updateOrderText();
-=======
-        isBurger = burgerScript.Burgerdone;
-        isChopping = choppingScript.chopping_done;
-        isSmash = smashScript.BurgerSmashDone;
-        isMixed = saladScript._saladmix_done;
-
-        randOrderNum = Random.Range(1, 9); // Generate between 1 and 8 meals
-        startOrder();
->>>>>>> cef6db37dcbafebdfc5eec0ed374d66360cbb6eb
     }
 
     void Update()

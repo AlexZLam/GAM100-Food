@@ -4223,7 +4223,6 @@ MonoBehaviour:
   _movespeed: 0
   _parentobject: {fileID: 1020767869}
   _startbutton: {fileID: 1956236755}
-  burgersmash_done: 0
   BurgerSmashDone: 0
 --- !u!114 &1502168877
 MonoBehaviour:
@@ -4281,7 +4280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera_Move: {fileID: 2095876017}
-  _saladcircle: {fileID: 100557023}
+  _saladcircle5: {fileID: 0}
   _start: {fileID: 100557019}
   _position1: {fileID: 926140863}
   _position2: {fileID: 1094553402}
@@ -4292,6 +4291,7 @@ MonoBehaviour:
   _screenposition: {x: 0, y: 0, z: 0}
   _worldposition: {x: 0, y: 0, z: 0}
   _prefab: {fileID: 8697481183531850241, guid: b7ccce9a4fc37f3499bf13487980a7fb, type: 3}
+  _saladmix_done: 0
 --- !u!114 &1502168880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4334,7 +4334,9 @@ MonoBehaviour:
   milkshakeScript: {fileID: 1502168878}
   choppingScript: {fileID: 1502168880}
   smashScript: {fileID: 1502168876}
+  camera_Move: {fileID: 2095876017}
   orderTextObject: {fileID: 223671050}
+  orderObj: {fileID: 1336998507}
 --- !u!1 &1507967838
 GameObject:
   m_ObjectHideFlags: 0
