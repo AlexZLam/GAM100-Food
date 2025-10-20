@@ -13,7 +13,7 @@ public class Chopping : MonoBehaviour
 {
     public camera_move camera_Move;
     public GameObject chopping;
-
+    public bool chopping_done;
     public GameObject knife;
     public GameObject[] slice_x_position_objs;
     public float slice_tolerance = 15f;
@@ -22,7 +22,7 @@ public class Chopping : MonoBehaviour
     private bool[] slice_bools;
     private float[] slice_positions;
     private int chops_goal;
-    private bool game_won;
+    
     private bool game_started;
     private bool knife_currently_chopping = false;
 
@@ -138,7 +138,7 @@ public class Chopping : MonoBehaviour
                 if (chops_current == chops_goal)
                 {
                     Debug.Log("you won!");
-                    game_won = true;
+                    chopping_done = true;
                 }
             }
             //ADD DRAW LINE
@@ -159,7 +159,7 @@ public class Chopping : MonoBehaviour
         {
             slice_bools[i] = false;
         }
-        game_won = false;
+        chopping_done = false;
         Debug.Log("Chopping restarted");
     }
 }
