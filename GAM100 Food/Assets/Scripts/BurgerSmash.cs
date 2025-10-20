@@ -3,7 +3,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PointerController : MonoBehaviour
+public class BurgerSmash : MonoBehaviour
 {
     public camera_move camera_Move;
 
