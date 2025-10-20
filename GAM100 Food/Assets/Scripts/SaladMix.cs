@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.SceneView;
 
@@ -6,6 +7,7 @@ public class SaladMix : MonoBehaviour
     [Header("Scripts")]
     public camera_move camera_Move;
     public SaladCircle5 _saladcircle5;
+    public SaladCircle _saladcircle;
 
     [Header("Points")]
     [SerializeField]
@@ -70,5 +72,12 @@ public class SaladMix : MonoBehaviour
             _saladmix_done = true;
             _saladcircle5._sixth = false;
         }
+        Invoke("Time", 5f);
+    }
+
+    private void Time()
+    {
+        Debug.Log("Failed");
+        _saladcircle._start = false;
     }
 }
