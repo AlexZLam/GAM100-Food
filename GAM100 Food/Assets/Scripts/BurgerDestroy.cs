@@ -2,39 +2,80 @@ using UnityEngine;
 
 public class BurgerDestroy : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject plate;
+    [SerializeField] private GameObject plate;
+    public Burgere burgereScript;
+
+    public plate plateScript;
 
     private bool onPlate = false;
-    public bool fell = false;
-    Vector3 platePos;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private bool fell = false;
+    private bool isDestroyed = false;
+    private Vector3 platePos;
+
+    public bool bun1;
+    public bool bun;
+    public bool lettuce;
+    public bool tomatto;
+    public bool cheese;
+    public bool onion;
+  
     void Start()
     {
-        platePos = plate.transform.position;
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(onPlate)
+        platePos = plate.transform.position;
+        if (onPlate)
         {
-            gameObject.transform.position = platePos;
+            transform.position = platePos;
         }
-        if(fell)
+
+        if (fell && !isDestroyed)
         {
-            Destroy(gameObject);
+            onPlate = false;
+            isDestroyed = true;
+            burgereScript?.OnIngredientFell(); // Notify Burgere script
+
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Plate"))
+        if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Plate"))
         {
             onPlate = true;
         }
-        else
+        else if (collision.gameObject.CompareTag("Ground"))
         {
             fell = true;
         }
+
+        if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Tomato"))
+        {
+
+        }
+        if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Bun"))
+        {
+
+        }
+        if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Bun1"))
+        {
+
+        }
+        if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Cheese"))
+        {
+
+        }
+        if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Lettuce"))
+        {
+
+        }
+        if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Onion"))
+        {
+
+        }
+
     }
 }

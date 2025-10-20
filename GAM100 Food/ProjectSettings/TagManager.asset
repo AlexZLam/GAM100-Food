@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 3
   tags:
   - Plate
+  - Ground
+  - Lettuce
+  - Bun
+  - Bun1
+  - Cheese
+  - Tomato
+  - Onion
   layers:
   - Default
   - TransparentFX
