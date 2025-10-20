@@ -45,6 +45,10 @@ public class Milkshake : MonoBehaviour
         if (game_started)
         {
             click_counter++;
+            if(click_counter % 10 == 0)
+            {
+                Debug.Log(click_counter + " clicks , " + timer + " seconds left");
+            }
             if (click_counter == click_goal)
             {
                 game_won = true;
@@ -56,6 +60,7 @@ public class Milkshake : MonoBehaviour
 
     void OnStartButtonClick()
     {
+        Debug.Log("Milkshake started: get " + click_goal + " clicks in " + timer + " seconds to win!");
         game_started = true;
         timer = 10f;
         game_won = false;
