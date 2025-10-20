@@ -46,11 +46,11 @@ public class Chopping : MonoBehaviour
 
         chops_goal = slice_x_position_objs.Length;
         slice_positions = new float[chops_goal];
-        Debug.Log("Chopping slice positions: " );
+        //Debug.Log("chops_goal: "+ chops_goal + " Chopping slice positions: " );
         for (int i = 0; i < slice_positions.Length; i++)
         {
             slice_positions[i] = slice_x_position_objs[i].transform.position.x;
-            Debug.Log(slice_positions[i]);
+            //Debug.Log(slice_positions[i]);
         }
         
         slice_bools = new bool[chops_goal];
@@ -78,16 +78,16 @@ public class Chopping : MonoBehaviour
 
     private void setChoppingActive()
     {
-        //bool camera_on_game = camera_Move.current_game == camera_Move.chopping;
-        //if (camera_on_game && game_started == false)
-        //{
-        //    restartGame();
-        //}
-        //else if(!camera_on_game && game_started == true)
-        //{
-        //    game_started = false;
-        //}
-        chopping.SetActive(camera_Move.current_game == camera_Move.chopping);
+        bool camera_on_game = camera_Move.current_game == camera_Move.chopping;
+        if (camera_on_game && game_started == false)
+        {
+            restartGame();
+        }
+        else if(!camera_on_game && game_started == true)
+        {
+            game_started = false;
+        }
+        chopping.SetActive(camera_on_game);
     }
 
     private void myMouseLeftClick(Vector3 mouse_position)
@@ -110,30 +110,30 @@ public class Chopping : MonoBehaviour
         int arr_pos = 0;
         float upper_limit = 0;
         float lower_limit = 0;
-        Debug.Log("loop: ");
+        //Debug.Log("loop: ");
         for (int i = 0; i < slice_positions.Length; i++)
         {
             upper_limit = slice_positions[i] + slice_tolerance;
             lower_limit = slice_positions[i] - slice_tolerance;
-            Debug.Log("upper_limit = " + upper_limit + " lower_limit = " + lower_limit);
+            //Debug.Log("upper_limit = " + upper_limit + " lower_limit = " + lower_limit);
             if (chop_x > lower_limit && chop_x < upper_limit)
             {
                 successful_chop = true;
-                arr_pos = i;
-                Debug.Log("break");
+                //Debug.Log("break");
                 break;
                 
             }
+            arr_pos++;
         }
 
         if (successful_chop)
         {
-            Debug.Log("arr_pos = " + arr_pos + "successful chop: slice_bools[arr_pos] = " + slice_bools[arr_pos]);
+            //Debug.Log("arr_pos = " + arr_pos + " successful chop: slice_bools[arr_pos] = " + slice_bools[arr_pos]);
             //if ive already chopped here
             if (slice_bools[arr_pos] == false)
             {
                 chops_current += 1;
-                Debug.Log("chops_current incremented: " + chops_current);
+                //Debug.Log("chops_current incremented: " + chops_current);
                 slice_bools[arr_pos] = true;
                 if (chops_current == chops_goal)
                 {
