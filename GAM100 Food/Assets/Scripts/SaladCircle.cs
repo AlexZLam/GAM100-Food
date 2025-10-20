@@ -14,25 +14,38 @@ public class SaladCircle : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        _first = true;
-        if( _first == true)
+
+        if (Input.GetMouseButton(0))
         {
-            _second = true;
-            if ( _second == true && _first == true)
+            _first = true;
+            if (_first == true)
             {
-                _third = true;
-                if (_third == true && _second == true && _first == true)
+                _second = true;
+                if(_second == true)
                 {
-                    _fourth = true;
-                    if( _fourth == true && _first == true && _third == true && _second == true)
+                    _third = true;
+                    if(_third == true)
                     {
-                        _fifth = true;
-                        if (_first == true && _second == true && _third == true && _fourth == true && _fifth == true)
+                        _fourth = true;
+                        if(_fourth == true)
                         {
-                            _sixth = true;
-                            if(_first == true && _second == true && _third == true && _fourth == true && _fifth == true && _sixth == true)
+                            _fifth = true;
+                            if(_fifth == true)
                             {
-                                _finish = true;
+                                _sixth = true;
+                                if(_sixth == true)
+                                {
+                                    _finish = true;
+                                    if(_finish == false)
+                                    {
+                                        _first = false;
+                                        _second = false;
+                                        _third = false;
+                                        _fourth = false;
+                                        _fifth = false;
+                                        _sixth = false;
+                                    }
+                                }
                             }
                         }
                     }

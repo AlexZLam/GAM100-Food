@@ -46,7 +46,7 @@ public class BurgerDestroy : MonoBehaviour
         if (fell && !isDestroyed)
         {
             onPlate = false;
-            isDestroyed = true;
+            //isDestroyed = true;
             burgereScript?.OnIngredientFell(); // Notify Burgere script
             fell = false;
 
@@ -63,6 +63,7 @@ public class BurgerDestroy : MonoBehaviour
         {
             fell = true;
             burgereScript.done = false;
+            RemoveAllFromPlate();
         }
 
         if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Tomato"))
