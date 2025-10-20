@@ -3,9 +3,8 @@ using UnityEngine;
 public class BurgerDestroy : MonoBehaviour
 {
     [SerializeField] private GameObject plate;
-    public Burgere burgereScript;
+    public Burger burgereScript;
 
-    public plate plateScript;
 
     private bool onPlate = false;
     private bool fell = false;
@@ -62,7 +61,6 @@ public class BurgerDestroy : MonoBehaviour
         else if (collision.gameObject.CompareTag("Ground"))
         {
             fell = true;
-            burgereScript.done = false;
             RemoveAllFromPlate();
         }
 
@@ -77,7 +75,6 @@ public class BurgerDestroy : MonoBehaviour
         if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Bun1"))
         {
             onPlate = true;
-            burgereScript.done = true;
         }
         if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Cheese"))
         {
