@@ -18,7 +18,7 @@ public class Milkshake : MonoBehaviour
 
     private int click_counter;
     private bool game_started = false;
-    private bool game_won = false;
+    public bool milkshake_done = false;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,7 +36,7 @@ public class Milkshake : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
-                game_won = false;
+                milkshake_done = false;
                 game_started = false;
                 Debug.Log("you lost.");
             }
@@ -55,7 +55,7 @@ public class Milkshake : MonoBehaviour
             }
             if (click_counter == click_goal)
             {
-                game_won = true;
+                milkshake_done = true;
                 game_started = false;
                 Debug.Log("you won!");
             }
@@ -67,7 +67,7 @@ public class Milkshake : MonoBehaviour
         Debug.Log("Milkshake started: get " + click_goal + " clicks in " + timer + " seconds to win!");
         game_started = true;
         timer = 10f;
-        game_won = false;
+        milkshake_done = false;
     }
 
     private void setMilkshakeActive()
