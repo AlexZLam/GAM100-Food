@@ -5,7 +5,7 @@ public class SaladMix : MonoBehaviour
 {
     [Header("Scripts")]
     public camera_move camera_Move;
-    public SaladCircle5 _saladcircle;
+    public SaladCircle5 _saladcircle5;
 
     [Header("Points")]
     [SerializeField]
@@ -63,10 +63,12 @@ public class SaladMix : MonoBehaviour
             
         }
         _prefab2.transform.position = _worldposition;
-        
-        if(_saladcircle._sixth == true)
+
+        if (_saladcircle5._sixth == true)
         {
+            Debug.Log("Success");
             _saladmix_done = true;
+            _saladcircle5._sixth = false;
         }
     }
 }
