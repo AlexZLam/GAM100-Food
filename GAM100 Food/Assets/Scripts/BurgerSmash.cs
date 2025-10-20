@@ -34,6 +34,8 @@ public class BurgerSmash : MonoBehaviour
 
     private float _direction = 1f;
     private Vector3 _targetposition;
+
+    public bool BurgerSmashDone;
  
 
     private void Start()
@@ -91,6 +93,7 @@ public class BurgerSmash : MonoBehaviour
                 _movespeed = 0f;
                 // if move speed is 2000 say its a success
                 Debug.Log("Success!");
+                BurgerSmashDone = true;
             }
         }
         else

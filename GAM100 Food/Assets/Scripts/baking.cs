@@ -29,7 +29,8 @@ public class Baking : MonoBehaviour
     private Color newColor;
     private CanvasGroup sliderGroup;
     private Slider sliderComponent;
- 
+
+    public bool BakingDone;
 
     void Start()
     {
@@ -100,6 +101,7 @@ public class Baking : MonoBehaviour
             Finished();
 
             Debug.Log("Button clicked while slider is between 0 and 0.9!");
+            BakingDone = true;
         }
     }
 
