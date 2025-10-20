@@ -1,16 +1,14 @@
 using UnityEngine;
-using TMPro; // ? Required for TextMeshPro
+using TMPro;
 using System.Collections.Generic;
-using static UnityEditor.SceneView;
-using UnityEngine.UIElements.Experimental;
 
 public class order : MonoBehaviour
 {
     public Burger burgerScript;
-    public Baking bakingScript;
     public Milkshake milkshakeScript;
     public Chopping choppingScript;
     public BurgerSmash smashScript;
+    public SaladMix saladScript;
     public camera_move camera_Move;
 
     [SerializeField]
@@ -18,19 +16,16 @@ public class order : MonoBehaviour
     [SerializeField]
     private GameObject orderObj;
 
-    private TextMeshProUGUI orderTxt; // ? Use TMP component
+    private TextMeshProUGUI orderTxt;
 
     private int randOrderNum;
     private List<string> activeOrders = new List<string>();
-
+    
     void Start()
     {
-        orderTxt = orderTextObject.GetComponent<TextMeshProUGUI>(); // ? Correct TMP component
-        randOrderNum = Random.Range(1, 9); // Generate between 1 and 8 meals
-        startOrder();
-        updateOrderText();
+        orderTxt = orderTextObject.GetComponent<TextMeshProUGUI>();
+        updateOrderText(); // Show empty list initially
     }
-
     void Update()
     {
         if (activeOrders.Contains("Burger") && burgerScript.Burgerdone)
@@ -41,11 +36,11 @@ public class order : MonoBehaviour
             updateOrderText();
         }
 
-        if (activeOrders.Contains("Baking") && bakingScript.BakingDone)
+        if (activeOrders.Contains("Salad") && saladScript._saladmix_done)
         {
-            Debug.Log("Baking order completed!");
-            bakingScript.BakingDone = false;
-            activeOrders.Remove("Baking");
+            Debug.Log("Salad order completed!");
+            saladScript._saladmix_done = false;
+            activeOrders.Remove("Salad");
             updateOrderText();
         }
 
@@ -72,11 +67,15 @@ public class order : MonoBehaviour
             activeOrders.Remove("Burger Smash");
             updateOrderText();
         }
+
         setOrderActive();
     }
 
-    private void startOrder()
+    public void GenerateOrder()
     {
+        activeOrders.Clear(); // Reset previous orders
+        randOrderNum = Random.Range(1, 9);
+
         for (int i = 0; i < randOrderNum; i++)
         {
             int randOrder = Random.Range(1, 6);
@@ -88,8 +87,8 @@ public class order : MonoBehaviour
                     Debug.Log("Order " + (i + 1) + ": Burger");
                     break;
                 case 2:
-                    activeOrders.Add("Baking");
-                    Debug.Log("Order " + (i + 1) + ": Baking");
+                    activeOrders.Add("Salad");
+                    Debug.Log("Order " + (i + 1) + ": Salad");
                     break;
                 case 3:
                     activeOrders.Add("Milkshake");
@@ -103,11 +102,10 @@ public class order : MonoBehaviour
                     activeOrders.Add("Burger Smash");
                     Debug.Log("Order " + (i + 1) + ": Burger Smash");
                     break;
-                default:
-                    Debug.Log("Order " + (i + 1) + ": Invalid order type");
-                    break;
             }
         }
+
+        updateOrderText();
     }
 
     private void updateOrderText()
@@ -118,6 +116,7 @@ public class order : MonoBehaviour
             orderTxt.text += order + "\n";
         }
     }
+
     private void setOrderActive()
     {
         orderObj.SetActive(camera_Move.current_game == camera_Move.counter);
