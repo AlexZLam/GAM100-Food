@@ -75,9 +75,10 @@ public class Burger : MonoBehaviour
                 {
                     rand = Random.Range(ingredientMinX, ingredientMaxX);
                 }
-                else if(Burgerdone == true)
+                else
                 {
                     Debug.Log("Complete");
+                    Burgerdone = true;
                 }
             }
         }

@@ -1,5 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro; // ? Required for TextMeshPro
+using System.Collections.Generic;
+using static UnityEditor.SceneView;
+using UnityEngine.UIElements.Experimental;
 
 public class order : MonoBehaviour
 {
@@ -8,95 +11,96 @@ public class order : MonoBehaviour
     public Milkshake milkshakeScript;
     public Chopping choppingScript;
     public BurgerSmash smashScript;
+    public camera_move camera_Move;
 
-    private bool isBurger;
-    private bool isChopping;
-    private bool isBaking;
-    private bool isSmash;
-    private bool isMilkshake;
+    [SerializeField]
+    private GameObject orderTextObject;
+    [SerializeField]
+    private GameObject orderObj;
+
+    private TextMeshProUGUI orderTxt; // ? Use TMP component
 
     private int randOrderNum;
-    private int randOrder;
+    private List<string> activeOrders = new List<string>();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-<<<<<<< Updated upstream
-        isBurger = burgerScript.Burgerdone;
-        isChopping = choppingScript.chopping_done;
-        isSmash = smashScript.burgersmash_done;
-=======
+        orderTxt = orderTextObject.GetComponent<TextMeshProUGUI>(); // ? Correct TMP component
         randOrderNum = Random.Range(1, 9); // Generate between 1 and 8 meals
         startOrder();
->>>>>>> Stashed changes
+        updateOrderText();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // Check if each order type is done and reset the flag
-        if (isBurger && burgerScript.Burgerdone)
+        if (activeOrders.Contains("Burger") && burgerScript.Burgerdone)
         {
             Debug.Log("Burger order completed!");
             burgerScript.Burgerdone = false;
-            isBurger = false;
+            activeOrders.Remove("Burger");
+            updateOrderText();
         }
 
-        if (isBaking && bakingScript.BakingDone)
+        if (activeOrders.Contains("Baking") && bakingScript.BakingDone)
         {
             Debug.Log("Baking order completed!");
             bakingScript.BakingDone = false;
-            isBaking = false;
+            activeOrders.Remove("Baking");
+            updateOrderText();
         }
 
-        if (isMilkshake && milkshakeScript.milkshake_done)
+        if (activeOrders.Contains("Milkshake") && milkshakeScript.milkshake_done)
         {
             Debug.Log("Milkshake order completed!");
             milkshakeScript.milkshake_done = false;
-            isMilkshake = false;
+            activeOrders.Remove("Milkshake");
+            updateOrderText();
         }
 
-        if (isChopping && choppingScript.chopping_done)
+        if (activeOrders.Contains("Chopping") && choppingScript.chopping_done)
         {
             Debug.Log("Chopping order completed!");
             choppingScript.chopping_done = false;
-            isChopping = false;
+            activeOrders.Remove("Chopping");
+            updateOrderText();
         }
 
-        if (isSmash && smashScript.BurgerSmashDone)
+        if (activeOrders.Contains("Burger Smash") && smashScript.BurgerSmashDone)
         {
             Debug.Log("Burger Smash order completed!");
             smashScript.BurgerSmashDone = false;
-            isSmash = false;
+            activeOrders.Remove("Burger Smash");
+            updateOrderText();
         }
+        setOrderActive();
     }
 
     private void startOrder()
     {
         for (int i = 0; i < randOrderNum; i++)
         {
-            randOrder = Random.Range(1, 6); // Random meal type between 1 and 5
+            int randOrder = Random.Range(1, 6);
 
             switch (randOrder)
             {
                 case 1:
-                    isBurger = true;
+                    activeOrders.Add("Burger");
                     Debug.Log("Order " + (i + 1) + ": Burger");
                     break;
                 case 2:
-                    isBaking = true;
+                    activeOrders.Add("Baking");
                     Debug.Log("Order " + (i + 1) + ": Baking");
                     break;
                 case 3:
-                    isMilkshake = true;
+                    activeOrders.Add("Milkshake");
                     Debug.Log("Order " + (i + 1) + ": Milkshake");
                     break;
                 case 4:
-                    isChopping = true;
+                    activeOrders.Add("Chopping");
                     Debug.Log("Order " + (i + 1) + ": Chopping");
                     break;
                 case 5:
-                    isSmash = true;
+                    activeOrders.Add("Burger Smash");
                     Debug.Log("Order " + (i + 1) + ": Burger Smash");
                     break;
                 default:
@@ -104,5 +108,18 @@ public class order : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private void updateOrderText()
+    {
+        orderTxt.text = "Orders:\n";
+        foreach (string order in activeOrders)
+        {
+            orderTxt.text += order + "\n";
+        }
+    }
+    private void setOrderActive()
+    {
+        orderObj.SetActive(camera_Move.current_game == camera_Move.counter);
     }
 }
