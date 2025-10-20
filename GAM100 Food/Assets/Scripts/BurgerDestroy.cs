@@ -18,11 +18,22 @@ public class BurgerDestroy : MonoBehaviour
     public bool tomatto;
     public bool cheese;
     public bool onion;
-  
-    void Start()
+
+
+    public static void RemoveAllFromPlate()
     {
-        
+        BurgerDestroy[] allIngredients = FindObjectsOfType<BurgerDestroy>();
+        foreach (BurgerDestroy ingredient in allIngredients)
+        {
+            ingredient.RemoveFromPlate();
+        }
     }
+
+    public void RemoveFromPlate()
+    {
+        onPlate = false;
+    }
+
 
     void Update()
     {
@@ -35,8 +46,9 @@ public class BurgerDestroy : MonoBehaviour
         if (fell && !isDestroyed)
         {
             onPlate = false;
-            isDestroyed = true;
+            //isDestroyed = true;
             burgereScript?.OnIngredientFell(); // Notify Burgere script
+            fell = false;
 
         }
     }
@@ -45,36 +57,39 @@ public class BurgerDestroy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Plate"))
         {
-            onPlate = true;
+            
         }
         else if (collision.gameObject.CompareTag("Ground"))
         {
             fell = true;
+            burgereScript.done = false;
+            RemoveAllFromPlate();
         }
 
         if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Tomato"))
         {
-
+            onPlate = true;           
         }
         if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Bun"))
         {
-
+            onPlate = true;
         }
         if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Bun1"))
         {
-
+            onPlate = true;
+            burgereScript.done = true;
         }
         if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Cheese"))
         {
-
+            onPlate = true;
         }
         if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Lettuce"))
         {
-
+            onPlate = true;
         }
         if (collision.gameObject.CompareTag("Plate") && gameObject.CompareTag("Onion"))
         {
-
+            onPlate = true;
         }
 
     }

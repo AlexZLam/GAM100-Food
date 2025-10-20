@@ -6,15 +6,19 @@ public class Burgere : MonoBehaviour
     public GameObject burger;
     [SerializeField] private GameObject bun, bun1, tomato, lettuce, cheese, onion, plate;
 
-    [SerializeField] private float plateSpeed = 5f;
-    [SerializeField] private float plateMinX = 15f;
-    [SerializeField] private float plateMaxX = 23f;
+    [SerializeField] private float plateSpeed = 10f;
+    private float plateMinX = 5;
+    private float plateMaxX = 30f;
+    private float ingredientMaxX = 26f;
+    private float ingredientMinX = 9f;
+
 
     private GameObject[] ingredients;
     private int currentIngredientIndex = 0;
     private float fallSpeed = 0f;
     private float startY = 16f;
     private float rand;
+    public bool done;
 
     void Start()
     {
@@ -33,11 +37,13 @@ public class Burgere : MonoBehaviour
             }
         }
 
-        rand = Random.Range(plateMinX, plateMaxX);
+        rand = Random.Range(ingredientMinX, ingredientMaxX);
+
     }
 
     void Update()
     {
+        
         setBurgerActive();
         MovePlate();
 
@@ -49,6 +55,9 @@ public class Burgere : MonoBehaviour
             if (newY >= 5f)
             {
                 ingredients[currentIngredientIndex].transform.position = new Vector3(rand, newY);
+                Debug.Log(rand);
+                Debug.Log(ingredients[currentIngredientIndex].transform.position.x);
+                Debug.Log(" MinX: " + plateMinX + " MaxX: " + plateMaxX);
             }
             else
             {
@@ -57,7 +66,11 @@ public class Burgere : MonoBehaviour
                 currentIngredientIndex++;
                 if (currentIngredientIndex < ingredients.Length)
                 {
-                    rand = Random.Range(plateMinX, plateMaxX);
+                    rand = Random.Range(ingredientMinX, ingredientMaxX);
+                }
+                else if(done == true)
+                {
+                    Debug.Log("Complete");
                 }
             }
         }
@@ -85,7 +98,7 @@ public class Burgere : MonoBehaviour
         currentIngredientIndex = 0;
         fallSpeed = 0f;
         startY = 16f;
-        rand = Random.Range(plateMinX, plateMaxX);
+        rand = Random.Range(ingredientMinX, ingredientMaxX);
 
         Vector3 resetPos = new Vector3(rand, startY);
 
