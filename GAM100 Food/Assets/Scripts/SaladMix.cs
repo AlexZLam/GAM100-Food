@@ -64,6 +64,7 @@ public class SaladMix : MonoBehaviour
         if(_saladcircle._finish == true)
         {
             Debug.Log("Success");
+            _saladcircle._finish = false;
         }
     }
 }
