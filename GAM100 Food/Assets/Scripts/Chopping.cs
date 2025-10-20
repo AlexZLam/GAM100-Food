@@ -111,7 +111,7 @@ public class Chopping : MonoBehaviour
         //ADD KNIFE ANIMATION
         //check if chopped correctly
         float chop_x = mouse_position.x;
-        Debug.Log("chop position: " + chop_x + ", total chops: " + chops_current);
+        //Debug.Log("chop position: " + chop_x + ", total chops: " + chops_current);
         bool successful_chop = false;
         int arr_pos = 0;
         float upper_limit = 0;
@@ -152,7 +152,7 @@ public class Chopping : MonoBehaviour
         }
         else
         {
-            Debug.Log("bad chop, you lost.");
+            //Debug.Log("bad chop, you lost.");
             restartGame();
         }
     }
@@ -166,6 +166,6 @@ public class Chopping : MonoBehaviour
             slice_bools[i] = false;
         }
         chopping_done = false;
-        Debug.Log("Chopping restarted");
+        //Debug.Log("Chopping restarted");
     }
 }
