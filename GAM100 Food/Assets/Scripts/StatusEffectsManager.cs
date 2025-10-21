@@ -38,7 +38,7 @@ public class StatusEffectsManager : MonoBehaviour
 
         button.onClick.AddListener(() =>
         {
-            if (progressBar.radialProgressBar.fillAmount <= 2)
+            if (progressBar.radialProgressBar.fillAmount <= 0.195f)
             {
                 Debug.Log("Success");
                 friesDone = true;
