@@ -50,6 +50,14 @@ public class BurgerDestroy : MonoBehaviour
             fell = false;
 
         }
+        if(burgereScript.Burgerdone == true)
+        {
+            onPlate = false;
+            //isDestroyed = true;
+            burgereScript?.OnIngredientFell(); // Notify Burgere script
+            fell = false;
+            burgereScript.Burgerdone = false;
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
