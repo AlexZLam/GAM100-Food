@@ -46,6 +46,12 @@ public class SaladMix : MonoBehaviour
     public int _saladmix_fail_loop = 0;
     private int _saladmix_loops = 0;
 
+    [Header("how many")]
+    [SerializeField]
+    private int _saladmix_loops_count = 5;
+    [SerializeField]
+    private int _saladmix_fail_loop_count = 1;
+
 
     private void Awake()
     {
@@ -74,23 +80,25 @@ public class SaladMix : MonoBehaviour
 
         if (_saladcircle5._sixth == true)
         {
-            if(_saladmix_loops == 5)
+            if(_saladmix_loops == _saladmix_loops_count)
             {
                 Debug.Log("Success");
                 _saladmix_done = true;
+                StopCoroutine(TimeDelay(10f));
 
             }
             _saladcircle._start = false;
             _saladmix_loops += 1;
         }
 
-        if( _saladmix_fail_loop == 1 || _saladcircle._start == false)
+        if( _saladmix_fail_loop == _saladmix_fail_loop_count || _saladcircle._start == false)
         {
-            return;
+            StopCoroutine(TimeDelay(10f));
         }
         else
         {
-            StartCoroutine(TimeDelay(5f));
+            if(camera_Move.current_game == camera_Move.salad && _saladcircle._start == true)
+            StartCoroutine(TimeDelay(10f));
         }
 
     }
