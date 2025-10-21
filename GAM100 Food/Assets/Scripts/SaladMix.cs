@@ -84,7 +84,7 @@ public class SaladMix : MonoBehaviour
             {
                 Debug.Log("Success");
                 _saladmix_done = true;
-                StopCoroutine(TimeDelay(10f));
+                StopCoroutine(TimeDelay(0f));
 
             }
             _saladcircle._start = false;
@@ -93,7 +93,7 @@ public class SaladMix : MonoBehaviour
 
         if( _saladmix_fail_loop == _saladmix_fail_loop_count || _saladcircle._start == false)
         {
-            StopCoroutine(TimeDelay(10f));
+            StopCoroutine(TimeDelay(0f));
         }
         else
         {
