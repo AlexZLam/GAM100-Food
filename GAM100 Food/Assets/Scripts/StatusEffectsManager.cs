@@ -22,15 +22,8 @@ public class StatusEffectsManager : MonoBehaviour
     public float duration;
 
     [Header("Finished")]
-    public bool Done;
-
-    private void Start()
-    {
-        button.onClick.AddListener(() =>
-        {
-            StartEnergizedEffect(duration);
-        });
-    }
+    public bool friesDone;
+    private bool itStarted = false;
 
     private void Update()
     {
@@ -47,9 +40,18 @@ public class StatusEffectsManager : MonoBehaviour
         {
             if (progressBar.radialProgressBar.fillAmount <= 2)
             {
-                Done = true;
+                Debug.Log("Success");
+                friesDone = true;
                 EndEnergizedEffect(duration);
+                itStarted = false;
+
             }
+            if(itStarted == false)
+            {
+                StartEnergizedEffect(duration);
+                itStarted = true;
+            }
+
         });
     }
 

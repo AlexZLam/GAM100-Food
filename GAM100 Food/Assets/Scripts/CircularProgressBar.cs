@@ -42,5 +42,6 @@ public class CircularProgressBar : MonoBehaviour
     {
         radialProgressBar.fillAmount = 100;
         isActive = false;
+        ActivateCountdown(10);
     }
 }
