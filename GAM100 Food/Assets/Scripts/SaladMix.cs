@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.SceneView;
@@ -41,6 +42,11 @@ public class SaladMix : MonoBehaviour
     [Header("Done")]
     public bool _saladmix_done = false;
 
+    [Header("Loop")]
+    public int _saladmix_fail_loop = 0;
+    private int _saladmix_loops = 0;
+
+
     private void Awake()
     {
         _prefab2 = Instantiate(_prefab, new Vector3(0, 0, 0), Quaternion.identity); // Create a game object
@@ -68,16 +74,38 @@ public class SaladMix : MonoBehaviour
 
         if (_saladcircle5._sixth == true)
         {
-            Debug.Log("Success");
-            _saladmix_done = true;
-            _saladcircle5._sixth = false;
+            if(_saladmix_loops == 5)
+            {
+                Debug.Log("Success");
+                _saladmix_done = true;
+
+            }
+            _saladcircle._start = false;
+            _saladmix_loops += 1;
         }
-        Invoke("Time", 5f);
+
+        if( _saladmix_fail_loop == 1 || _saladcircle._start == false)
+        {
+            return;
+        }
+        else
+        {
+            StartCoroutine(TimeDelay(5f));
+        }
+
+    }
+
+    IEnumerator TimeDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Time();
+
     }
 
     private void Time()
     {
         Debug.Log("Failed");
         _saladcircle._start = false;
+        _saladmix_fail_loop = 1;
     }
 }

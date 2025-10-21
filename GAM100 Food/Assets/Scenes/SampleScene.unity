@@ -525,7 +525,6 @@ GameObject:
   m_Component:
   - component: {fileID: 100557020}
   - component: {fileID: 100557021}
-  - component: {fileID: 100557023}
   - component: {fileID: 100557022}
   - component: {fileID: 100557025}
   - component: {fileID: 100557024}
@@ -660,19 +659,6 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
   m_UseDelaunayMesh: 0
---- !u!114 &100557023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100557019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d58150464f70464fb08c629608d206b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _start: 0
 --- !u!50 &100557024
 Rigidbody2D:
   serializedVersion: 4
@@ -712,6 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d58150464f70464fb08c629608d206b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _saladmix: {fileID: 1502168879}
   _start: 0
 --- !u!1 &153182348
 GameObject:
@@ -2363,7 +2350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2668b06fbe14f43a5245d968fe1537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _saladcircle: {fileID: 100557023}
+  _saladcircle: {fileID: 100557025}
   _second: 0
 --- !u!1 &1012232196
 GameObject:
@@ -3046,7 +3033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a97a0818f20d4a42b4d547110771495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _saladcircle: {fileID: 100557023}
+  _saladcircle: {fileID: 100557025}
   _saladcircle1: {fileID: 926140869}
   _third: 0
 --- !u!1 &1096419985
@@ -3927,7 +3914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc72fd069e6e1946bc04e3b4be89f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _saladcircle: {fileID: 100557023}
+  _saladcircle: {fileID: 100557025}
   _saladcircle1: {fileID: 926140869}
   _saladcircle2: {fileID: 1094553408}
   _fourth: 0
@@ -4156,7 +4143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera_Move: {fileID: 2095876017}
   _saladcircle5: {fileID: 1622060501}
-  _saladcircle: {fileID: 100557023}
+  _saladcircle: {fileID: 100557025}
   _start: {fileID: 100557019}
   _position1: {fileID: 926140863}
   _position2: {fileID: 1094553402}
@@ -4168,6 +4155,7 @@ MonoBehaviour:
   _worldposition: {x: 0, y: 0, z: 0}
   _prefab: {fileID: 8697481183531850241, guid: b7ccce9a4fc37f3499bf13487980a7fb, type: 3}
   _saladmix_done: 0
+  _saladmix_fail_loop: 0
 --- !u!114 &1502168880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4679,7 +4667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5b993eaa420044090e771dbe7141d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _saladcircle: {fileID: 100557023}
+  _saladcircle: {fileID: 100557025}
   _saladcircle1: {fileID: 926140869}
   _saladcircle2: {fileID: 1094553408}
   _saladcircle3: {fileID: 1416135181}
@@ -5497,7 +5485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b0aac654f215e1449d978831e2a9285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _saladcircle: {fileID: 100557023}
+  _saladcircle: {fileID: 100557025}
   _saladcircle1: {fileID: 926140869}
   _saladcircle2: {fileID: 1094553408}
   _saladcircle3: {fileID: 1416135181}
