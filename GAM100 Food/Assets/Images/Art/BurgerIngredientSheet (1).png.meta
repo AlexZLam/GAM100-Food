@@ -308,7 +308,14 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BurgerIngredientSheet (1)_0: -8791766834702232190
+      BurgerIngredientSheet (1)_1: -1187325708483865981
+      BurgerIngredientSheet (1)_2: 7134319236722125493
+      BurgerIngredientSheet (1)_3: -1438832615792830932
+      BurgerIngredientSheet (1)_4: 4366202976283537313
+      BurgerIngredientSheet (1)_5: 4801305171964656724
+      BurgerIngredientSheet (1)_6: 7572062735765240118
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

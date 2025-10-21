@@ -3,7 +3,6 @@ using UnityEngine;
 public class camera_move : MonoBehaviour
 {
     public GameObject current_game;
-
     [SerializeField]
     public GameObject home, counter, burger, milkshake, salad, chopping, baking, fries, smash;
 
