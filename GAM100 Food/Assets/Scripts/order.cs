@@ -20,7 +20,10 @@ public class order : MonoBehaviour
 
     private int randOrderNum;
     private List<string> activeOrders = new List<string>();
-    
+
+    private float orderStartTime;
+    private bool timerRunning = false;
+
     void Start()
     {
         orderTxt = orderTextObject.GetComponent<TextMeshProUGUI>();
@@ -28,86 +31,49 @@ public class order : MonoBehaviour
     }
     void Update()
     {
-        if (activeOrders.Contains("Burger") && burgerScript.Burgerdone)
-        {
-            Debug.Log("Burger order completed!");
-            burgerScript.Burgerdone = false;
-            activeOrders.Remove("Burger");
-            updateOrderText();
-        }
+        CheckOrderCompletion();
 
-        if (activeOrders.Contains("Salad") && saladScript._saladmix_done)
+        if (timerRunning && AllOrdersCompleted())
         {
-            Debug.Log("Salad order completed!");
-            saladScript._saladmix_done = false;
-            activeOrders.Remove("Salad");
-            updateOrderText();
-        }
-
-        if (activeOrders.Contains("Milkshake") && milkshakeScript.milkshake_done)
-        {
-            Debug.Log("Milkshake order completed!");
-            milkshakeScript.milkshake_done = false;
-            activeOrders.Remove("Milkshake");
-            updateOrderText();
-        }
-
-        if (activeOrders.Contains("Chopping") && choppingScript.chopping_done)
-        {
-            Debug.Log("Chopping order completed!");
-            choppingScript.chopping_done = false;
-            activeOrders.Remove("Chopping");
-            updateOrderText();
-        }
-
-        if (activeOrders.Contains("Burger Smash") && smashScript.BurgerSmashDone)
-        {
-            Debug.Log("Burger Smash order completed!");
-            smashScript.BurgerSmashDone = false;
-            activeOrders.Remove("Burger Smash");
-            updateOrderText();
+            float timeTaken = Time.time - orderStartTime;
+            int score = CalculateScore(timeTaken, randOrderNum);
+            Debug.Log($"Order completed in {timeTaken:F2} seconds. Score: {score}");
+            timerRunning = false;
         }
 
         setOrderActive();
     }
 
+
     public void GenerateOrder()
     {
         if (!AllOrdersCompleted())
         {
-            Debug.Log("Cannot generate new orders until current ones are completed.");
+            Debug.Log("Finish current order first!");
             return;
         }
 
-        activeOrders.Clear(); // Just in case
+        activeOrders.Clear();
         randOrderNum = Random.Range(1, 9);
 
         for (int i = 0; i < randOrderNum; i++)
         {
             int randOrder = Random.Range(1, 6);
-
             switch (randOrder)
             {
-                case 1:
-                    activeOrders.Add("Burger");
-                    break;
-                case 2:
-                    activeOrders.Add("Salad");
-                    break;
-                case 3:
-                    activeOrders.Add("Milkshake");
-                    break;
-                case 4:
-                    activeOrders.Add("Chopping");
-                    break;
-                case 5:
-                    activeOrders.Add("Burger Smash");
-                    break;
+                case 1: activeOrders.Add("Burger"); break;
+                case 2: activeOrders.Add("Salad"); break;
+                case 3: activeOrders.Add("Milkshake"); break;
+                case 4: activeOrders.Add("Chopping"); break;
+                case 5: activeOrders.Add("Burger Smash"); break;
             }
         }
 
+        orderStartTime = Time.time;
+        timerRunning = true;
         updateOrderText();
     }
+
 
 
     private void updateOrderText()
@@ -127,5 +93,48 @@ public class order : MonoBehaviour
     {
         return activeOrders.Count == 0;
     }
+    private void CheckOrderCompletion()
+    {
+        {
+            burgerScript.Burgerdone = false;
+            activeOrders.Remove("Burger");
+            updateOrderText();
+        }
+        if (activeOrders.Contains("Salad") && saladScript._saladmix_done)
+        {
+            saladScript._saladmix_done = false;
+            activeOrders.Remove("Salad");
+            updateOrderText();
+        }
+        if (activeOrders.Contains("Milkshake") && milkshakeScript.milkshake_done)
+        {
+            milkshakeScript.milkshake_done = false;
+            activeOrders.Remove("Milkshake");
+            updateOrderText();
+        }
+        if (activeOrders.Contains("Chopping") && choppingScript.chopping_done)
+        {
+            choppingScript.chopping_done = false;
+            activeOrders.Remove("Chopping");
+            updateOrderText();
+        }
+        if (activeOrders.Contains("Burger Smash") && smashScript.BurgerSmashDone)
+        {
+            smashScript.BurgerSmashDone = false;
+            activeOrders.Remove("Burger Smash");
+            updateOrderText();
+        }
+    }
+    private int CalculateScore(float timeTaken, int orderCount)
+    {
+        float baseScore = 100f;
+        float timePenalty = timeTaken * 2f; // 2 points lost per second
+        float complexityBonus = orderCount * 10f;
+
+        float finalScore = baseScore + complexityBonus - timePenalty;
+        return Mathf.Max(0, Mathf.RoundToInt(finalScore));
+    }
+
+
 
 }
