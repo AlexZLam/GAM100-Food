@@ -88,6 +88,7 @@ public class Baking : MonoBehaviour
 
     private void OnButtonClick()
     {
+        BakingDone = false;
         countdown = time;
         isCountingDown = true;
         Debug.Log("Button clicked, countdown started.");
