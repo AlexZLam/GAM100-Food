@@ -73,7 +73,13 @@ public class order : MonoBehaviour
 
     public void GenerateOrder()
     {
-        activeOrders.Clear(); // Reset previous orders
+        if (!AllOrdersCompleted())
+        {
+            Debug.Log("Cannot generate new orders until current ones are completed.");
+            return;
+        }
+
+        activeOrders.Clear(); // Just in case
         randOrderNum = Random.Range(1, 9);
 
         for (int i = 0; i < randOrderNum; i++)
@@ -84,29 +90,25 @@ public class order : MonoBehaviour
             {
                 case 1:
                     activeOrders.Add("Burger");
-                    Debug.Log("Order " + (i + 1) + ": Burger");
                     break;
                 case 2:
                     activeOrders.Add("Salad");
-                    Debug.Log("Order " + (i + 1) + ": Salad");
                     break;
                 case 3:
                     activeOrders.Add("Milkshake");
-                    Debug.Log("Order " + (i + 1) + ": Milkshake");
                     break;
                 case 4:
                     activeOrders.Add("Chopping");
-                    Debug.Log("Order " + (i + 1) + ": Chopping");
                     break;
                 case 5:
                     activeOrders.Add("Burger Smash");
-                    Debug.Log("Order " + (i + 1) + ": Burger Smash");
                     break;
             }
         }
 
         updateOrderText();
     }
+
 
     private void updateOrderText()
     {
@@ -121,4 +123,9 @@ public class order : MonoBehaviour
     {
         orderObj.SetActive(camera_Move.current_game == camera_Move.counter);
     }
+    private bool AllOrdersCompleted()
+    {
+        return activeOrders.Count == 0;
+    }
+
 }
