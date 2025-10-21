@@ -85,6 +85,7 @@ public class SaladMix : MonoBehaviour
                 Debug.Log("Success");
                 _saladmix_done = true;
                 StopCoroutine(TimeDelay(0f));
+                _saladmix_loops = 0;
 
             }
             _saladcircle._start = false;
