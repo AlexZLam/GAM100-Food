@@ -158,7 +158,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PattySmashingTool_0: 6192310163091565141
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
