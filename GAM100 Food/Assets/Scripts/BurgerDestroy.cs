@@ -18,6 +18,8 @@ public class BurgerDestroy : MonoBehaviour
     public bool cheese;
     public bool onion;
 
+    private Rigidbody2D rb;
+
 
     public static void RemoveAllFromPlate()
     {
@@ -32,6 +34,10 @@ public class BurgerDestroy : MonoBehaviour
     {
         onPlate = false;
     }
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
 
     void Update()
@@ -40,6 +46,8 @@ public class BurgerDestroy : MonoBehaviour
         if (onPlate)
         {
             transform.position = platePos;
+            transform.rotation = plate.transform.rotation;
+           
         }
 
         if (fell && !isDestroyed)
@@ -56,6 +64,7 @@ public class BurgerDestroy : MonoBehaviour
             //isDestroyed = true;
             burgereScript?.OnIngredientFell(); // Notify Burgere script
             fell = false;
+            RemoveAllFromPlate();
             burgereScript.Burgerdone = false;
         }
     }

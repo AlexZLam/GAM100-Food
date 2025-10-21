@@ -56,15 +56,12 @@ public class Burger : MonoBehaviour
 
         if (burger.activeSelf && currentIngredientIndex < ingredients.Length)
         {
-            fallSpeed += 5f * Time.deltaTime;
+            fallSpeed += 7f * Time.deltaTime;
             float newY = startY - fallSpeed;
 
             if (newY >= 5f)
             {
                 ingredients[currentIngredientIndex].transform.position = new Vector3(rand, newY);
-                Debug.Log(rand);
-                Debug.Log(ingredients[currentIngredientIndex].transform.position.x);
-                Debug.Log(" MinX: " + plateMinX + " MaxX: " + plateMaxX);
             }
             else
             {
