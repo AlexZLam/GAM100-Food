@@ -4156,6 +4156,8 @@ MonoBehaviour:
   _prefab: {fileID: 8697481183531850241, guid: b7ccce9a4fc37f3499bf13487980a7fb, type: 3}
   _saladmix_done: 0
   _saladmix_fail_loop: 0
+  _saladmix_loops_count: 5
+  _saladmix_fail_loop_count: 1
 --- !u!114 &1502168880
 MonoBehaviour:
   m_ObjectHideFlags: 0

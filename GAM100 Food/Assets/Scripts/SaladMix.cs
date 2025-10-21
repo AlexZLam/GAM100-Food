@@ -98,7 +98,7 @@ public class SaladMix : MonoBehaviour
         else
         {
             if(camera_Move.current_game == camera_Move.salad && _saladcircle._start == true)
-            StartCoroutine(TimeDelay(10f));
+            StartCoroutine(TimeDelay(3f));
         }
 
     }
