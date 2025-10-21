@@ -19,5 +19,9 @@ public class SaladCircle5 : MonoBehaviour
         {
             _sixth = true;
         }
+        else if(_saladcircle._start == false)
+        {
+            _sixth = false;
+        }
     }
 }
