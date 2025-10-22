@@ -1,0 +1,10 @@
+Logisim Boolean Alegebra
+
+Inputs: a, b ,c
+Outputs: y1,y2,y3
+
+y1 = a' * b
+
+y2 = c * d'
+
+y3 = (a' *b) + (c*d")
