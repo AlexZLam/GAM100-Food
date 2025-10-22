@@ -51,8 +51,23 @@ public class StatusEffectsManager : MonoBehaviour
                 StartEnergizedEffect(duration);
                 itStarted = true;
             }
+            if(progressBar.radialProgressBar.fillAmount > 0.195f && itStarted == true && progressBar.radialProgressBar.fillAmount < 0.95f)
+            {
+                Debug.Log("Fail");
+                StartEnergizedEffect(duration);
+            }
+            if(friesDone == true && progressBar.radialProgressBar.fillAmount >= 0.95f)
+            {
+                friesDone = false;
+                itStarted = true;
+                StartEnergizedEffect(duration);
+            }
 
         });
+        if (progressBar.radialProgressBar.fillAmount == 0)
+        {
+            StartEnergizedEffect(duration);
+        }
     }
 
 
@@ -61,8 +76,7 @@ public class StatusEffectsManager : MonoBehaviour
 
 
         isEnergized = true;
-        energizedEffect.SetActive(true);
-        energizedEffect.transform.Find("RadialProgressBar").GetComponent<CircularProgressBar>().ActivateCountdown(duration);
+        progressBar.ActivateCountdown(duration);
 
         StartCoroutine(EndEnergizedEffect(duration));
     }

@@ -2981,6 +2981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6310e26d2829ef94587d814ac448f88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 1502168882}
   radialProgressBar: {fileID: 942383091}
 --- !u!114 &942383091
 MonoBehaviour:
@@ -5142,7 +5143,7 @@ MonoBehaviour:
   ParentObject: {fileID: 1218320613}
   isEnergized: 0
   button: {fileID: 501141243}
-  duration: 0
+  duration: 10
   friesDone: 0
 --- !u!1 &1507967838
 GameObject:

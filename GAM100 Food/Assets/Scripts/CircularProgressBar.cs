@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class CircularProgressBar : MonoBehaviour
 {
+    [Header("Scripts")]
+    public StatusEffectsManager manager;
+
     private bool isActive = false;
 
     private float indicatorTimer;
@@ -16,21 +19,6 @@ public class CircularProgressBar : MonoBehaviour
         radialProgressBar = GetComponent<Image>();
     }
 
-    private void Update()
-    {
-        if (isActive)
-        {
-            indicatorTimer -= Time.deltaTime;
-            radialProgressBar.fillAmount = (indicatorTimer / maxIndicatorTimer);
-
-            if (indicatorTimer <= 0)
-            {
-                StopCountdown();
-            }
-        }
-    }
-
-
     public void ActivateCountdown(float countdownTime)
     {
         isActive = true;
@@ -38,10 +26,26 @@ public class CircularProgressBar : MonoBehaviour
         indicatorTimer = maxIndicatorTimer;
     }
 
+    private void Update()
+    {
+        if (isActive)
+        {
+            indicatorTimer -= Time.deltaTime;
+            radialProgressBar.fillAmount = (indicatorTimer / maxIndicatorTimer);
+
+            if (manager.friesDone == true)
+            {
+                StopCountdown();
+            }
+        }
+    }
+
+
+
+
     public void StopCountdown()
     {
         radialProgressBar.fillAmount = 100;
         isActive = false;
-        ActivateCountdown(10);
     }
 }
