@@ -158,7 +158,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spr_bg_background_0: 8350806310310869052
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

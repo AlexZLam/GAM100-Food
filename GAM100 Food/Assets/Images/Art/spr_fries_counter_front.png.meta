@@ -158,7 +158,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spr_fries_counter_front_0: 2975976180008628131
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

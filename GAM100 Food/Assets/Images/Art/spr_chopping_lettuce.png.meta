@@ -158,7 +158,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spr_chopping_lettuce_0: 7212277750074178960
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

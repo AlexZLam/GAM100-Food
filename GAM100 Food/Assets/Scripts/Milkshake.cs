@@ -16,6 +16,9 @@ public class Milkshake : MonoBehaviour
     public float timer = 10f;
     public int click_goal = 100;
 
+
+    public Animator milkshake_animator;
+
     private int click_counter;
     private float time_counter;
     private bool game_started = false;
@@ -41,6 +44,8 @@ public class Milkshake : MonoBehaviour
                 milkshake_done = false;
                 game_started = false;
                 Debug.Log("you lost.");
+                //animate
+                milkshake_animator.SetTrigger("done_mixing");
             }
         }
         setMilkshakeActive();
@@ -60,13 +65,18 @@ public class Milkshake : MonoBehaviour
                 milkshake_done = true;
                 game_started = false;
                 Debug.Log("you won!");
+                milkshake_animator.SetTrigger("done_mixing");
             }
         }
     }
 
     void OnStartButtonClick()
     {
-        
+        //animate
+        milkshake_animator.ResetTrigger("done_mixing");
+        milkshake_animator.ResetTrigger("start_mixing");
+        milkshake_animator.SetTrigger("start_mixing");
+        milkshake_animator.SetTrigger("start_mixing");
         game_started = true;
         time_counter = timer;
         click_counter = 0;
