@@ -158,7 +158,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spr_counter_guy_idle_0: -5505659213449249157
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

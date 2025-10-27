@@ -333,7 +333,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spr_chopping_knifeandmarkers_0: 5143614291207943643
+      spr_chopping_knifeandmarkers_1: 6856249805521747216
+      spr_chopping_knifeandmarkers_2: -3328647850827057134
+      spr_chopping_knifeandmarkers_3: -5619960493061443808
+      spr_chopping_knifeandmarkers_4: 567409266693978137
+      spr_chopping_knifeandmarkers_5: 5001645627366773195
+      spr_chopping_knifeandmarkers_6: -8141419629636075228
+      spr_chopping_knifeandmarkers_7: 7196885337208769335
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

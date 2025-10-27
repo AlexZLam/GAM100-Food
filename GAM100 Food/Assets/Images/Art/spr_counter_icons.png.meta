@@ -333,7 +333,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spr_counter_icons_0: 4818193631797045804
+      spr_counter_icons_1: -8090141586340083321
+      spr_counter_icons_2: -3610067734349645860
+      spr_counter_icons_3: 1441638540336156787
+      spr_counter_icons_4: -1982728796205715782
+      spr_counter_icons_5: 1863605740386711616
+      spr_counter_icons_6: 1400694093216626549
+      spr_counter_icons_7: 984880797478170790
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

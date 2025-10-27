@@ -158,7 +158,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spr_milkshake_blender_blend1_0: -2695853933070418553
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
