@@ -126,21 +126,21 @@ public class Chopping : MonoBehaviour
         knife_currently_chopping = true;
         //check if chopped correctly
         float chop_x = mouse_position.x;
-        Debug.Log("chop position: " + chop_x + ", total chops: " + chops_current);
+        //Debug.Log("chop position: " + chop_x + ", total chops: " + chops_current);
         bool successful_chop = false;
         int arr_pos = 0;
         float upper_limit = 0;
         float lower_limit = 0;
-        Debug.Log("loop: ");
+        //Debug.Log("loop: ");
         for (int i = 0; i < slice_positions.Length; i++)
         {
             upper_limit = slice_positions[i] + slice_tolerance;
             lower_limit = slice_positions[i] - slice_tolerance;
-            Debug.Log("upper_limit = " + upper_limit + " lower_limit = " + lower_limit);
+            //Debug.Log("upper_limit = " + upper_limit + " lower_limit = " + lower_limit);
             if (chop_x > lower_limit && chop_x < upper_limit)
             {
                 successful_chop = true;
-                Debug.Log("break");
+                //Debug.Log("success: "+chop_x+" > "+lower_limit+" && "+chop_x+" < "+upper_limit);
                 break;
                 
             }
@@ -167,7 +167,7 @@ public class Chopping : MonoBehaviour
         }
         else
         {
-            //Debug.Log("bad chop, you lost.");
+            Debug.Log("bad chop, you lost.");
             restartGame();
         }
     }
