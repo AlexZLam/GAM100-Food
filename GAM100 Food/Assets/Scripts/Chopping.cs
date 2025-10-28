@@ -53,6 +53,9 @@ public class Chopping : MonoBehaviour
         knife_start_height = knife.transform.position.y;
         chops_goal = slice_x_position_objs.Length;
         slice_positions = new float[chops_goal];
+
+        slice_tolerance = slice_x_position_objs[0].GetComponent<SpriteRenderer>().bounds.max.x - slice_x_position_objs[0].GetComponent<SpriteRenderer>().bounds.min.x;
+        Debug.Log("tolerance: " + slice_tolerance);
         //Debug.Log("chops_goal: "+ chops_goal + " Chopping slice positions: " );
         for (int i = 0; i < slice_positions.Length; i++)
         {
@@ -123,21 +126,21 @@ public class Chopping : MonoBehaviour
         knife_currently_chopping = true;
         //check if chopped correctly
         float chop_x = mouse_position.x;
-        //Debug.Log("chop position: " + chop_x + ", total chops: " + chops_current);
+        Debug.Log("chop position: " + chop_x + ", total chops: " + chops_current);
         bool successful_chop = false;
         int arr_pos = 0;
         float upper_limit = 0;
         float lower_limit = 0;
-        //Debug.Log("loop: ");
+        Debug.Log("loop: ");
         for (int i = 0; i < slice_positions.Length; i++)
         {
             upper_limit = slice_positions[i] + slice_tolerance;
             lower_limit = slice_positions[i] - slice_tolerance;
-            //Debug.Log("upper_limit = " + upper_limit + " lower_limit = " + lower_limit);
+            Debug.Log("upper_limit = " + upper_limit + " lower_limit = " + lower_limit);
             if (chop_x > lower_limit && chop_x < upper_limit)
             {
                 successful_chop = true;
-                //Debug.Log("break");
+                Debug.Log("break");
                 break;
                 
             }
@@ -160,7 +163,7 @@ public class Chopping : MonoBehaviour
                 }
             }
             //ADD DRAW LINE
-            
+            slice_x_position_objs[arr_pos].GetComponent<SpriteRenderer>().enabled = false;
         }
         else
         {
@@ -176,6 +179,10 @@ public class Chopping : MonoBehaviour
         for (int i = 0; i < slice_bools.Length; i++)
         {
             slice_bools[i] = false;
+        }
+        for (int i = 0; i < slice_x_position_objs.Length; i++)
+        {
+            slice_x_position_objs[i].GetComponent<SpriteRenderer>().enabled = true;
         }
         chopping_done = false;
         //Debug.Log("Chopping restarted");
