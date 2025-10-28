@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StatusEffectsManager : MonoBehaviour
+public class fries : MonoBehaviour
 {
     [Header("Scripts")]
     public camera_move camera_Move;
@@ -25,6 +25,13 @@ public class StatusEffectsManager : MonoBehaviour
     public bool friesDone;
     private bool itStarted = false;
 
+    [SerializeField]
+    private Sprite perfect, burnt, under, empty;
+
+    [SerializeField]
+    private GameObject basket;
+    private bool wasBurnt;
+
     private void Update()
     {
         if (camera_Move.current_game == camera_Move.fries)
@@ -40,11 +47,12 @@ public class StatusEffectsManager : MonoBehaviour
         {
             if (progressBar.radialProgressBar.fillAmount <= 0.096f)
             {
+                basket.GetComponent<SpriteRenderer>().sprite = empty;
                 Debug.Log("Success");
                 friesDone = true;
                 EndEnergizedEffect(duration);
                 itStarted = false;
-
+                basket.GetComponent<SpriteRenderer>().sprite = perfect;
             }
             if(itStarted == false)
             {
@@ -55,6 +63,7 @@ public class StatusEffectsManager : MonoBehaviour
             {
                 Debug.Log("Fail");
                 StartEnergizedEffect(duration);
+                basket.GetComponent<SpriteRenderer>().sprite = under;
             }
             if(friesDone == true && progressBar.radialProgressBar.fillAmount >= 0.95f)
             {
@@ -67,6 +76,8 @@ public class StatusEffectsManager : MonoBehaviour
         if (progressBar.radialProgressBar.fillAmount == 0)
         {
             StartEnergizedEffect(duration);
+            Debug.Log("Fail");
+            basket.GetComponent<SpriteRenderer>().sprite = burnt;
         }
     }
 

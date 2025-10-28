@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class CircularProgressBar : MonoBehaviour
 {
     [Header("Scripts")]
-    public StatusEffectsManager manager;
+    public fries manager;
 
     private bool isActive = false;
 
