@@ -53,6 +53,9 @@ public class Chopping : MonoBehaviour
         knife_start_height = knife.transform.position.y;
         chops_goal = slice_x_position_objs.Length;
         slice_positions = new float[chops_goal];
+
+        slice_tolerance = slice_x_position_objs[0].GetComponent<SpriteRenderer>().bounds.max.x - slice_x_position_objs[0].GetComponent<SpriteRenderer>().bounds.min.x;
+        Debug.Log("tolerance: " + slice_tolerance);
         //Debug.Log("chops_goal: "+ chops_goal + " Chopping slice positions: " );
         for (int i = 0; i < slice_positions.Length; i++)
         {
@@ -137,7 +140,7 @@ public class Chopping : MonoBehaviour
             if (chop_x > lower_limit && chop_x < upper_limit)
             {
                 successful_chop = true;
-                //Debug.Log("break");
+                //Debug.Log("success: "+chop_x+" > "+lower_limit+" && "+chop_x+" < "+upper_limit);
                 break;
                 
             }
@@ -160,11 +163,11 @@ public class Chopping : MonoBehaviour
                 }
             }
             //ADD DRAW LINE
-            
+            slice_x_position_objs[arr_pos].GetComponent<SpriteRenderer>().enabled = false;
         }
         else
         {
-            //Debug.Log("bad chop, you lost.");
+            Debug.Log("bad chop, you lost.");
             restartGame();
         }
     }
@@ -176,6 +179,10 @@ public class Chopping : MonoBehaviour
         for (int i = 0; i < slice_bools.Length; i++)
         {
             slice_bools[i] = false;
+        }
+        for (int i = 0; i < slice_x_position_objs.Length; i++)
+        {
+            slice_x_position_objs[i].GetComponent<SpriteRenderer>().enabled = true;
         }
         chopping_done = false;
         //Debug.Log("Chopping restarted");

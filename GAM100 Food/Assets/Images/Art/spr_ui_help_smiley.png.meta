@@ -158,7 +158,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spr_ui_help_smiley_0: -4731142559564067081
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
