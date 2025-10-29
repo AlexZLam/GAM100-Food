@@ -1,9 +1,21 @@
+/*******************************************************************************
+* File Name: order.cs
+* Author: Alex Lam
+* DigiPen Email: alexander.lam@digipen.edu
+* Course: GAM100
+*
+* Description: This file manages the order system for the cooking game.
+* It generates randomized orders, tracks their completion, updates the UI,
+* and calculates scores based on performance.
+*******************************************************************************/
+
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 
 public class order : MonoBehaviour
 {
+    [Header("Minigame Scripts")]
     public Burger burgerScript;
     public Milkshake milkshakeScript;
     public Chopping choppingScript;
@@ -11,28 +23,37 @@ public class order : MonoBehaviour
     public SaladMix saladScript;
     public camera_move camera_Move;
 
-    [SerializeField]
-    private GameObject orderTextObject;
-    [SerializeField]
-    private GameObject orderObj;
+    [Header("UI Elements")]
+    [SerializeField] private GameObject orderTextObject;
+    [SerializeField] private GameObject orderObj;
 
     private TextMeshProUGUI orderTxt;
 
+    // Number of tasks in the current order
     private int randOrderNum;
+    // List of active tasks to complete
     private List<string> activeOrders = new List<string>();
 
+    // Timer tracking
     private float orderStartTime;
     private bool timerRunning = false;
 
+    // Called once at the start of the game
     void Start()
     {
+        // Get reference to the UI text component
         orderTxt = orderTextObject.GetComponent<TextMeshProUGUI>();
-        updateOrderText(); // Show empty list initially
+        // Display empty order list initially
+        updateOrderText();
     }
+
+    // Called once per frame
     void Update()
     {
+        // Check if any tasks have been completed
         CheckOrderCompletion();
 
+        // If all tasks are done and timer is running, calculate score
         if (timerRunning && AllOrdersCompleted())
         {
             float timeTaken = Time.time - orderStartTime;
@@ -41,20 +62,23 @@ public class order : MonoBehaviour
             timerRunning = false;
         }
 
+        // Show or hide the order UI based on camera position
         setOrderActive();
     }
 
-
+    // Generates a new randomized order
     public void GenerateOrder()
     {
+        // Prevent generating a new order if current one isn't finished
         if (!AllOrdersCompleted())
         {
             Debug.Log("Finish current order first!");
             return;
         }
 
+        // Clear previous order and generate new one
         activeOrders.Clear();
-        randOrderNum = Random.Range(1, 9);
+        randOrderNum = Random.Range(1, 9); // Number of tasks in the order
 
         for (int i = 0; i < randOrderNum; i++)
         {
@@ -69,13 +93,13 @@ public class order : MonoBehaviour
             }
         }
 
+        // Start the timer
         orderStartTime = Time.time;
         timerRunning = true;
         updateOrderText();
     }
 
-
-
+    // Updates the order list text in the UI
     private void updateOrderText()
     {
         orderTxt.text = "Orders:\n";
@@ -85,16 +109,22 @@ public class order : MonoBehaviour
         }
     }
 
+    // Activates the order UI only when the camera is at the counter
     private void setOrderActive()
     {
         orderObj.SetActive(camera_Move.current_game == camera_Move.counter);
     }
+
+    // Checks if all tasks have been completed
     private bool AllOrdersCompleted()
     {
         return activeOrders.Count == 0;
     }
+
+    // Checks each task's completion flag and removes it from the list
     private void CheckOrderCompletion()
     {
+        if (activeOrders.Contains("Burger") && burgerScript.Burgerdone)
         {
             burgerScript.Burgerdone = false;
             activeOrders.Remove("Burger");
@@ -125,6 +155,8 @@ public class order : MonoBehaviour
             updateOrderText();
         }
     }
+
+    // Calculates score based on time taken and number of tasks
     private int CalculateScore(float timeTaken, int orderCount)
     {
         float baseScore = 100f;
@@ -134,7 +166,4 @@ public class order : MonoBehaviour
         float finalScore = baseScore + complexityBonus - timePenalty;
         return Mathf.Max(0, Mathf.RoundToInt(finalScore));
     }
-
-
-
 }
