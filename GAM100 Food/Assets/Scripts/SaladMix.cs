@@ -1,3 +1,12 @@
+/*******************************************************************************
+* File Name: SaladMix.cs
+* Author: Bishep Clous
+* DigiPen Email: bishep.clous@digipen.edu
+* Course: GAM100
+*
+* Description: This file contains functions for the salad mixing minigame.
+*******************************************************************************/
+
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -52,10 +61,11 @@ public class SaladMix : MonoBehaviour
     [SerializeField]
     private int _saladmix_fail_loop_count = 1;
 
-
+    //Awake is called once before Start or Update are executed
     private void Awake()
     {
-        _prefab2 = Instantiate(_prefab, new Vector3(0, 0, 0), Quaternion.identity); // Create a game object
+        // Create a hitbox prefab game object to follow the mouse for collision detection
+        _prefab2 = Instantiate(_prefab, new Vector3(0, 0, 0), Quaternion.identity); 
         _prefab2.SetActive(false);
     }
 
@@ -65,17 +75,19 @@ public class SaladMix : MonoBehaviour
         _screenposition = Input.mousePosition;
         _screenposition.z = Camera.main.nearClipPlane + 1;
         _worldposition = Camera.main.ScreenToWorldPoint(_screenposition);
+        //if the camera is on salad area, show the game, if not, hide the game
         if (camera_Move.current_game == camera_Move.salad)
         {
-            _parentobject.SetActive(true); // if the camera is on salad area
+            _parentobject.SetActive(true); 
             _prefab2.SetActive(true);
         }
         else
         {
-            _parentobject.SetActive(false); // if camera is off of salad area
+            _parentobject.SetActive(false);
             _prefab2.SetActive(false);
             
         }
+        //move the hitbox to the mouse
         _prefab2.transform.position = _worldposition;
 
         if (_saladcircle5._sixth == true)

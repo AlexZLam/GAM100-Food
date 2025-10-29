@@ -1,3 +1,12 @@
+/*******************************************************************************
+* File Name: Chopping.cs
+* Author: Diana Everman
+* DigiPen Email: diana.everman@digipen.edu
+* Course: GAM100
+*
+* Description: This file contains functions for the chopping minigame.
+*******************************************************************************/
+
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -111,7 +120,12 @@ public class Chopping : MonoBehaviour
     }
 
     private void myMouseLeftClick(Vector3 mouse_position)
-    {/*
+    {
+        if(game_started == false)
+        {
+            return;
+        }
+        /*
         click = chop = knife sprite goes down(have knife slip into two segments, front and back)
         - if chopped wrong, lose / restart
     - if chopped correctly, draw a line at that spot
