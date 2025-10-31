@@ -1,3 +1,11 @@
+/*******************************************************************************
+* File Name: SaladCircle3.cs
+* Author: Bishep Clous
+* DigiPen Email: bishep.clous@digipen.edu
+* Course: GAM100
+*
+* Description: Checks previous section to see if it had been passed over
+*******************************************************************************/
 using Unity.VisualScripting;
 using UnityEngine;
 
