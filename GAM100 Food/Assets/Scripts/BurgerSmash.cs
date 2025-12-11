@@ -4,71 +4,89 @@
 * DigiPen Email: bishep.clous@digipen.edu
 * Course: GAM100
 *
-* Description: This file contains logic for the Burger Smash minigame.
-* The player must press the spacebar when a moving pointer enters a safe zone.
-* Success is determined by timing and pointer position.
+* Description:
+*   This file implements the logic for the Burger Smash minigame. A pointer moves
+*   back and forth between two boundary points, and the player must press the
+*   spacebar when the pointer enters a designated safe zone. Success is based on
+*   timing accuracy and pointer position.
 *******************************************************************************/
 
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BurgerSmash : MonoBehaviour
 {
+    /****************************************************************************
+    * Section: Inspector References
+    ****************************************************************************/
     [Header("Scripts")]
-    public camera_move camera_Move;
+    public camera_move camera_Move;                 // Reference to camera movement script
 
     [Header("Transforms")]
-    [SerializeField] private Transform _pointa;              // Left boundary of pointer movement
-    [SerializeField] private Transform _pointb;              // Right boundary of pointer movement
-    [SerializeField] private RectTransform _safezone;        // Area where pointer must be when space is pressed
-    [SerializeField] private RectTransform _pointertransform;// Pointer that moves between point A and B
+    [SerializeField] private Transform _pointa;     // Left boundary of pointer movement
+    [SerializeField] private Transform _pointb;     // Right boundary of pointer movement
+    [SerializeField] private RectTransform _safezone;        // Safe zone for successful smash
+    [SerializeField] private RectTransform _pointertransform; // Moving pointer UI element
 
     [Header("Movement")]
-    [SerializeField] private float _movespeed;               // Speed of pointer movement
+    [SerializeField] private float _movespeed;      // Pointer movement speed
 
     [Header("GameObjects")]
-    [SerializeField] private GameObject _parentobject;       // Parent object to show/hide based on camera
+    [SerializeField] private GameObject _parentobject; // Parent object for enabling/disabling UI
 
     [Header("UI Button")]
-    [SerializeField] private Button _startbutton;            // Button to start the game
+    [SerializeField] private Button _startbutton;   // Button to start the minigame
 
     [Header("Game State")]
-    public bool BurgerSmashDone;                             // Flag to indicate game completion
+    public bool BurgerSmashDone;                   // True when the minigame is successfully completed
 
-    private float _direction = 1f;                           // Direction of pointer movement
-    private Vector3 _targetposition;                         // Current target position for pointer
+    /****************************************************************************
+    * Section: Internal Variables
+    ****************************************************************************/
+    private float _direction = 1f;                 // Current movement direction (1 = right, -1 = left)
+    private Vector3 _targetposition;               // Current target position for pointer movement
 
-    // Called once before the first frame update
+    /****************************************************************************
+    * Function: Start
+    *
+    * Description:
+    *   Initializes the pointer's first movement target. Called before the first
+    *   frame update.
+    *
+    * Inputs:  None
+    * Outputs: None
+    ****************************************************************************/
     private void Start()
     {
-        // Set initial target to point B
-        _targetposition = _pointb.position;
+        _targetposition = _pointb.position; // Begin by moving toward point B
     }
 
-    // Called once per frame
+    /****************************************************************************
+    * Function: Update
+    *
+    * Description:
+    *   Called once per frame. Handles pointer movement, direction switching,
+    *   input detection, and toggling the minigame UI based on camera position.
+    *
+    * Inputs:  None
+    * Outputs: None
+    ****************************************************************************/
     private void Update()
     {
-        // Show or hide the game based on camera position
-        if (camera_Move.current_game == camera_Move.smash)
-        {
-            _parentobject.SetActive(true);
-        }
-        else
-        {
-            _parentobject.SetActive(false);
-        }
+        // Enable or disable the minigame UI depending on camera focus
+        _parentobject.SetActive(camera_Move.current_game == camera_Move.smash);
 
-        // Move the pointer toward the current target position
-        _pointertransform.position = Vector3.MoveTowards(_pointertransform.position, _targetposition, _movespeed * Time.deltaTime);
+        // Move pointer toward the current target
+        _pointertransform.position =
+            Vector3.MoveTowards(_pointertransform.position, _targetposition, _movespeed * Time.deltaTime);
 
-        // Reverse direction when reaching either boundary
+        // Reverse direction when reaching the left boundary
         if (Vector3.Distance(_pointertransform.position, _pointa.position) < 0.1f)
         {
             _targetposition = _pointb.position;
             _direction = 1f;
         }
+        // Reverse direction when reaching the right boundary
         else if (Vector3.Distance(_pointertransform.position, _pointb.position) < 0.1f)
         {
             _targetposition = _pointa.position;
@@ -81,14 +99,23 @@ public class BurgerSmash : MonoBehaviour
             CheckSuccess();
         }
 
-        // Register button click to start the game
+        // Register button click (note: ideally should be moved to Start)
         _startbutton.onClick.AddListener(ButtonPress);
     }
 
-    // Called when spacebar is pressed to check if pointer is in safe zone
-    void CheckSuccess()
+    /****************************************************************************
+    * Function: CheckSuccess
+    *
+    * Description:
+    *   Determines whether the pointer is inside the safe zone when the player
+    *   presses the spacebar. If successful, the game ends.
+    *
+    * Inputs:  None
+    * Outputs: None
+    ****************************************************************************/
+    private void CheckSuccess()
     {
-        // Only check if pointer is moving
+        // Ignore input if pointer is not moving
         if (_movespeed == 0f)
         {
             return;
@@ -97,6 +124,7 @@ public class BurgerSmash : MonoBehaviour
         // Check if pointer is inside the safe zone
         if (RectTransformUtility.RectangleContainsScreenPoint(_safezone, _pointertransform.position, null))
         {
+            // Only count success if the game is actively running
             if (_movespeed == 2000f)
             {
                 _movespeed = 0f;
@@ -110,10 +138,17 @@ public class BurgerSmash : MonoBehaviour
         }
     }
 
-    // Called when start button is pressed to begin the game
-    void ButtonPress()
+    /****************************************************************************
+    * Function: ButtonPress
+    *
+    * Description:
+    *   Starts the minigame by setting the pointer's movement speed.
+    *
+    * Inputs:  None
+    * Outputs: None
+    ****************************************************************************/
+    private void ButtonPress()
     {
-        // Set pointer speed to begin movement
-        _movespeed = 2000f;
+        _movespeed = 2000f; // Begin pointer movement
     }
 }

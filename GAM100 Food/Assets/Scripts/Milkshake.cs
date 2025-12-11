@@ -4,100 +4,170 @@
 * DigiPen Email: diana.everman@digipen.edu
 * Course: GAM100
 *
-* Description: This file contains functions for the milkshake minigame.
+* Description:
+*   This file implements the milkshake minigame. The player must click rapidly
+*   within a time limit to reach a click goal. The script manages timing,
+*   click tracking, animation control, and win/lose conditions.
 *******************************************************************************/
 
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements.Experimental;
 
 public class Milkshake : MonoBehaviour
 {
+    /****************************************************************************
+    * Section: Inspector References
+    ****************************************************************************/
     [Header("Scripts")]
-    public camera_move camera_Move;
+    public camera_move camera_Move;          // Reference to camera movement script
+
     [Header("Buttons")]
-    public Button spamclick_button;
-    public Button start_button;
+    public Button spamclick_button;          // Button used for rapid clicking
+    public Button start_button;              // Button used to start the minigame
+
     [Header("Parent Object")]
-    public GameObject milkshake;
+    public GameObject milkshake;             // Parent object for enabling/disabling UI
+
     [Header("Time to beat")]
-    public float timer = 10f;
+    public float timer = 10f;                // Time limit for the minigame
+
     [Header("Clicks to get")]
-    public int click_goal = 100;
+    public int click_goal = 100;             // Number of clicks required to win
+
     [Header("Blender sprite animator")]
-    public Animator milkshake_animator;
+    public Animator milkshake_animator;      // Animator controlling blender animation
 
-    private int click_counter;
-    private float time_counter;
-    private bool game_started = false;
-    public bool milkshake_done = false;
+    /****************************************************************************
+    * Section: Internal State
+    ****************************************************************************/
+    private int click_counter;               // Number of clicks so far
+    private float time_counter;              // Remaining time
+    private bool game_started = false;       // True when the game is active
+    public bool milkshake_done = false;      // True when the minigame is successfully completed
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    /****************************************************************************
+    * Function: Start
+    *
+    * Description:
+    *   Initializes the timer and registers button listeners for starting the
+    *   game and counting clicks.
+    *
+    * Inputs:  None
+    * Outputs: None
+    ****************************************************************************/
     void Start()
     {
-        //timer stores the time limit so it does not change, thus time_counter starts at this value and counts down to 0.
+        // Initialize countdown timer
         time_counter = timer;
-        //when the start button and spam button are clicked, trigger the corresponding function in this script
+
+        // Register button click events
         spamclick_button.onClick.AddListener(OnSpamButtonClick);
         start_button.onClick.AddListener(OnStartButtonClick);
     }
 
-    // Update is called once per frame
+    /****************************************************************************
+    * Function: Update
+    *
+    * Description:
+    *   Called once per frame. Handles countdown logic, loss condition, and
+    *   toggles visibility based on camera position.
+    *
+    * Inputs:  None
+    * Outputs: None
+    ****************************************************************************/
     void Update()
     {
         if (game_started)
         {
-            //decrease the countdown tracker by how much time has passed since the last frame
+            // Decrease remaining time
             time_counter -= Time.deltaTime;
-            //if the countdown ends, lose the game
+
+            // If time runs out, player loses
             if (time_counter <= 0)
             {
                 milkshake_done = false;
                 game_started = false;
-                Debug.Log("you lost.");
-                //stop animating
+                Debug.Log("You lost.");
+
+                // Stop blender animation
                 milkshake_animator.SetTrigger("done_mixing");
             }
         }
-        //if the camera is on this game, show it, if not, hide it
+
+        // Show or hide the minigame UI
         setMilkshakeActive();
     }
 
-    //when the spam button is clicked, count it and check for win condition
+    /****************************************************************************
+    * Function: OnSpamButtonClick
+    *
+    * Description:
+    *   Called whenever the spam-click button is pressed. Increments the click
+    *   counter and checks for win condition.
+    *
+    * Inputs:  None
+    * Outputs: None
+    ****************************************************************************/
     void OnSpamButtonClick()
     {
         if (game_started)
-        {   
-            //increment the counter of clicks and win the game if it reaches the goal
+        {
             click_counter++;
-            if (click_counter % 10 == 0) { Debug.Log(click_counter + " clicks , " + time_counter + " seconds left"); }
+
+            // Optional debug output every 10 clicks
+            if (click_counter % 10 == 0)
+            {
+                Debug.Log(click_counter + " clicks, " + time_counter + " seconds left");
+            }
+
+            // Win condition
             if (click_counter == click_goal)
             {
                 milkshake_done = true;
                 game_started = false;
-                Debug.Log("you won!");
-                //stop animating
+                Debug.Log("You won!");
+
+                // Stop blender animation
                 milkshake_animator.SetTrigger("done_mixing");
             }
         }
     }
 
-    //when the start button is clicked, start the game
+    /****************************************************************************
+    * Function: OnStartButtonClick
+    *
+    * Description:
+    *   Starts the minigame by resetting counters, enabling animation, and
+    *   preparing the timer.
+    *
+    * Inputs:  None
+    * Outputs: None
+    ****************************************************************************/
     void OnStartButtonClick()
     {
-        //start animating
+        // Start blender animation
         milkshake_animator.SetTrigger("start_mixing");
-        //reset fields
+
+        // Reset game state
         game_started = true;
         time_counter = timer;
         click_counter = 0;
         milkshake_done = false;
-        Debug.Log("Milkshake started: get " + click_goal + " clicks in " + time_counter + " seconds to win!");
+
+        Debug.Log("Milkshake started: get " + click_goal +
+                  " clicks in " + time_counter + " seconds to win!");
     }
 
-    //if the camera is on this game, show it, if not, hide it
+    /****************************************************************************
+    * Function: setMilkshakeActive
+    *
+    * Description:
+    *   Shows or hides the milkshake minigame UI depending on whether the camera
+    *   is currently focused on the milkshake station.
+    *
+    * Inputs:  None
+    * Outputs: None
+    ****************************************************************************/
     private void setMilkshakeActive()
     {
         milkshake.SetActive(camera_Move.current_game == camera_Move.milkshake);

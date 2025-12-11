@@ -4,19 +4,31 @@
 * DigiPen Email: alexander.lam@digipen.edu
 * Course: GAM100
 *
-* Description: This script manages burger ingredient behavior in the burger
-* minigame. It handles positioning on the plate, falling detection, and 
-* communication with the Burger script when ingredients are lost or reset.
+* Description:
+*   This script manages the behavior of individual burger ingredients in the
+*   burger minigame. It handles snapping ingredients to the plate, detecting
+*   when they fall, and notifying the Burger script when ingredients are lost
+*   or when the burger is reset.
 *******************************************************************************/
 
 using UnityEngine;
 
 public class BurgerDestroy : MonoBehaviour
 {
+    /****************************************************************************
+    * Section: Inspector References
+    ****************************************************************************/
     [Header("References")]
-    [SerializeField] private GameObject plate;          // Reference to the plate object
-    public Burger burgereScript;                        // Reference to the Burger script
+    [SerializeField] private GameObject plate;   // Reference to the plate object
+    public Burger burgereScript;                // Reference to the main Burger script
 
+    /****************************************************************************
+    * Section: Ingredient Flags
+    *
+    * Description:
+    *   These flags identify which ingredient this object represents. They may
+    *   be used by other scripts for validation or ordering.
+    ****************************************************************************/
     [Header("Ingredient State Flags")]
     public bool bun1;
     public bool bun;
@@ -25,12 +37,24 @@ public class BurgerDestroy : MonoBehaviour
     public bool cheese;
     public bool onion;
 
-    private bool onPlate = false;                       // Whether the ingredient is currently on the plate
-    private bool fell = false;                          // Whether the ingredient has fallen
-    private bool isDestroyed = false;                   // Reserved for future use (e.g., visual destruction)
-    private Vector3 platePos;                           // Cached plate position for snapping
+    /****************************************************************************
+    * Section: Internal State Tracking
+    ****************************************************************************/
+    private bool onPlate = false;               // True if ingredient is snapped to the plate
+    private bool fell = false;                  // True if ingredient has fallen off
+    private bool isDestroyed = false;           // Reserved for future destruction logic
+    private Vector3 platePos;                   // Cached plate position for snapping
 
-    // Static method to remove all ingredients from the plate
+    /****************************************************************************
+    * Function: RemoveAllFromPlate (static)
+    *
+    * Description:
+    *   Removes all burger ingredients from the plate by clearing their onPlate
+    *   flags. Useful when resetting the entire burger.
+    *
+    * Inputs:  None
+    * Outputs: None
+    ****************************************************************************/
     public static void RemoveAllFromPlate()
     {
         BurgerDestroy[] allIngredients = FindObjectsOfType<BurgerDestroy>();
@@ -40,35 +64,52 @@ public class BurgerDestroy : MonoBehaviour
         }
     }
 
-    // Removes this ingredient from the plate
+    /****************************************************************************
+    * Function: RemoveFromPlate
+    *
+    * Description:
+    *   Removes this ingredient from the plate by clearing its onPlate flag.
+    *
+    * Inputs:  None
+    * Outputs: None
+    ****************************************************************************/
     public void RemoveFromPlate()
     {
         onPlate = false;
     }
 
-    // Called once per frame
+    /****************************************************************************
+    * Function: Update
+    *
+    * Description:
+    *   Called once per frame. Handles snapping ingredients to the plate,
+    *   detecting falls, and responding to burger completion events.
+    *
+    * Inputs:  None
+    * Outputs: None
+    ****************************************************************************/
     void Update()
     {
         // Cache the plate's current position
         platePos = plate.transform.position;
 
-        // If the ingredient is on the plate, snap its position to the plate
+        // Snap ingredient to plate if placed correctly
         if (onPlate)
         {
             transform.position = platePos;
-            // Optional: match rotation if needed
+            // Optional: match rotation if desired
             // transform.rotation = plate.transform.rotation;
         }
 
-        // If the ingredient has fallen and hasn't been handled yet
+        // Handle ingredient falling off the plate
         if (fell && !isDestroyed)
         {
             onPlate = false;
-            burgereScript?.OnIngredientFell(); // Notify the Burger script
+            burgereScript?.OnIngredientFell(); // Notify main burger script
             fell = false;
         }
 
-        // If the burger is marked as done, simulate a fall and reset
+        // If the burger is marked as done, simulate a fall and reset all ingredients
         if (burgereScript.Burgerdone == true)
         {
             fell = true;
@@ -78,7 +119,19 @@ public class BurgerDestroy : MonoBehaviour
         }
     }
 
-    // Called when the ingredient stays in contact with another collider
+    /****************************************************************************
+    * Function: OnCollisionStay2D
+    *
+    * Description:
+    *   Triggered while this ingredient remains in contact with another collider.
+    *   Handles snapping to the plate and detecting when the ingredient hits
+    *   the ground.
+    *
+    * Inputs:
+    *   Collision2D collision - Collision information for the contact
+    *
+    * Outputs: None
+    ****************************************************************************/
     private void OnCollisionStay2D(Collision2D collision)
     {
         // Ignore plate-to-plate collisions
@@ -87,14 +140,14 @@ public class BurgerDestroy : MonoBehaviour
             return;
         }
 
-        // If the ingredient hits the ground, mark it as fallen and reset all
+        // If ingredient hits the ground, mark as fallen and reset all ingredients
         if (collision.gameObject.CompareTag("Ground"))
         {
             fell = true;
             RemoveAllFromPlate();
         }
 
-        // If the ingredient touches the plate and is a valid burger component, snap it
+        // Snap ingredient to plate if it is a valid burger component
         if (collision.gameObject.CompareTag("Plate"))
         {
             if (gameObject.CompareTag("Tomato") ||

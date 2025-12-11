@@ -4,9 +4,10 @@
 * DigiPen Email: bishep.clous@digipen.edu
 * Course: GAM100
 *
-* Description: This file contains logic for the fries minigame, including
-* progress tracking, visual feedback, and success/failure conditions based
-* on timing and player interaction.
+* Description:
+*   This file implements the logic for the fries minigame. It manages the fry
+*   timer, visual feedback for cooking states (perfect, burnt, undercooked),
+*   and success/failure conditions based on player timing and interaction.
 *******************************************************************************/
 
 using System.Collections;
@@ -15,51 +16,70 @@ using UnityEngine.UI;
 
 public class fries : MonoBehaviour
 {
+    /****************************************************************************
+    * Section: Script References
+    ****************************************************************************/
     [Header("Scripts")]
-    public camera_move camera_Move; // Reference to camera movement script
-    public CircularProgressBar progressBar; // Progress bar for fry timer
+    public camera_move camera_Move;            // Reference to camera movement script
+    public CircularProgressBar progressBar;    // Circular progress bar for fry timer
 
+    /****************************************************************************
+    * Section: Game Objects
+    ****************************************************************************/
     [Header("Game Object")]
-    public GameObject energizedEffect; // Visual effect when energized
-    public GameObject ParentObject; // Parent object for fries minigame
+    public GameObject energizedEffect;         // Visual effect when energized
+    public GameObject ParentObject;            // Parent object for fries minigame UI
 
+    /****************************************************************************
+    * Section: State Flags
+    ****************************************************************************/
     [Header("Is Active")]
-    public bool isEnergized; // Flag to track if energized effect is active
+    public bool isEnergized;                   // True while energized effect is active
 
     [Header("Button")]
-    public Button button; // Button to interact with fries
+    public Button button;                      // Button used to interact with fries
 
     [Header("Duration")]
-    public float duration; // Duration for energized effect
+    public float duration;                     // Duration of energized effect
 
     [Header("Finished")]
-    public bool friesDone; // Flag to track if fries are successfully completed
-    private bool itStarted = false; // Flag to track if countdown has started
+    public bool friesDone;                     // True when fries are successfully completed
+    private bool itStarted = false;            // True when countdown has begun
 
-    [SerializeField]
-    private Sprite perfect, burnt, under, empty; // Sprites for fry states
+    /****************************************************************************
+    * Section: Sprites & Visuals
+    ****************************************************************************/
+    [SerializeField] private Sprite perfect;   // Perfectly cooked fries
+    [SerializeField] private Sprite burnt;     // Burnt fries
+    [SerializeField] private Sprite under;     // Undercooked fries
+    [SerializeField] private Sprite empty;     // Empty basket sprite
 
-    [SerializeField]
-    private GameObject basket; // Basket to display fry sprite
-    private bool wasBurnt; // Unused flag for burnt state
+    [SerializeField] private GameObject basket; // Basket object displaying fry sprite
+    private bool wasBurnt;                     // Unused flag (reserved for future use)
 
-    // Update is called once per frame
+    /****************************************************************************
+    * Function: Update
+    *
+    * Description:
+    *   Called once per frame. Handles UI visibility based on camera position,
+    *   processes button interactions, and checks for burnt fries.
+    *
+    * Inputs:  None
+    * Outputs: None
+    ****************************************************************************/
     private void Update()
     {
-        // Show or hide fries minigame based on camera focus
-        if (camera_Move.current_game == camera_Move.fries)
-        {
-            ParentObject.SetActive(true);
-        }
-        else
-        {
-            ParentObject.SetActive(false);
-        }
+        // Show or hide the fries minigame depending on camera focus
+        ParentObject.SetActive(camera_Move.current_game == camera_Move.fries);
 
-        // Add listener to button click (executed every frame — should be moved to Start)
+        /************************************************************************
+        * IMPORTANT NOTE:
+        *   This listener is added EVERY FRAME, which causes stacking callbacks.
+        *   It should be moved to Start(), but logic is preserved here as requested.
+        ************************************************************************/
         button.onClick.AddListener(() =>
         {
-            // If progress bar is nearly empty, mark as success
+            // SUCCESS: Fries are perfectly cooked (very low fill amount)
             if (progressBar.radialProgressBar.fillAmount <= 0.096f)
             {
                 basket.GetComponent<SpriteRenderer>().sprite = empty;
@@ -70,23 +90,25 @@ public class fries : MonoBehaviour
                 basket.GetComponent<SpriteRenderer>().sprite = perfect;
             }
 
-            // If countdown hasn't started, start it
-            if (itStarted == false)
+            // Start countdown if not already started
+            if (!itStarted)
             {
                 StartEnergizedEffect(duration);
                 itStarted = true;
             }
 
-            // If clicked during undercooked range, mark as fail
-            if (progressBar.radialProgressBar.fillAmount > 0.195f && itStarted == true && progressBar.radialProgressBar.fillAmount < 0.95f)
+            // FAIL: Undercooked range
+            if (progressBar.radialProgressBar.fillAmount > 0.195f &&
+                itStarted &&
+                progressBar.radialProgressBar.fillAmount < 0.95f)
             {
                 Debug.Log("Fail");
                 StartEnergizedEffect(duration);
                 basket.GetComponent<SpriteRenderer>().sprite = under;
             }
 
-            // If fries were done but overcooked, reset and restart
-            if (friesDone == true && progressBar.radialProgressBar.fillAmount >= 0.95f)
+            // FAIL: Overcooked after being done
+            if (friesDone && progressBar.radialProgressBar.fillAmount >= 0.95f)
             {
                 friesDone = false;
                 itStarted = true;
@@ -94,7 +116,7 @@ public class fries : MonoBehaviour
             }
         });
 
-        // If progress bar is completely empty, mark as burnt
+        // FAIL: Completely burnt
         if (progressBar.radialProgressBar.fillAmount == 0)
         {
             StartEnergizedEffect(duration);
@@ -103,15 +125,35 @@ public class fries : MonoBehaviour
         }
     }
 
-    // Starts the energized effect and begins countdown
+    /****************************************************************************
+    * Function: StartEnergizedEffect
+    *
+    * Description:
+    *   Begins the energized effect and starts the countdown timer.
+    *
+    * Inputs:
+    *   float duration - Duration of energized effect
+    *
+    * Outputs: None
+    ****************************************************************************/
     public void StartEnergizedEffect(float duration)
-    {
+    { 
         isEnergized = true;
         progressBar.ActivateCountdown(duration);
         StartCoroutine(EndEnergizedEffect(duration));
     }
 
-    // Ends the energized effect after delay
+    /****************************************************************************
+    * Function: EndEnergizedEffect
+    *
+    * Description:
+    *   Ends the energized effect after a delay.
+    *
+    * Inputs:
+    *   float delay - Time to wait before ending effect
+    *
+    * Outputs: None
+    ****************************************************************************/
     IEnumerator EndEnergizedEffect(float delay)
     {
         yield return new WaitForSeconds(delay);

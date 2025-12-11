@@ -4,9 +4,11 @@
 * DigiPen Email: bishep.clous@digipen.edu
 * Course: GAM100
 *
-* Description: This file manages the circular progress bar UI element used in the
-*              fries minigame. It handles countdown visualization and stops when
-*              the fries are done.
+* Description:
+*   This file manages the circular progress bar UI element used in the fries
+*   minigame. It visualizes a countdown timer by adjusting the radial fill
+*   amount of a UI Image. The countdown stops automatically when the fries
+*   minigame reports completion.
 *******************************************************************************/
 
 using UnityEngine;
@@ -14,25 +16,51 @@ using UnityEngine.UI;
 
 public class CircularProgressBar : MonoBehaviour
 {
+    /****************************************************************************
+    * Section: Script References
+    ****************************************************************************/
     [Header("Scripts")]
-    public fries manager; // Reference to the fries minigame manager script
+    public fries manager;                 // Reference to the fries minigame manager
 
-    private bool isActive = false; // Tracks whether the countdown is active
+    /****************************************************************************
+    * Section: Countdown State
+    ****************************************************************************/
+    private bool isActive = false;        // True when the countdown is running
+    private float indicatorTimer;         // Current countdown time
+    private float maxIndicatorTimer;      // Maximum countdown duration
 
-    private float indicatorTimer;     // Current countdown time
-    private float maxIndicatorTimer;  // Maximum countdown duration
-
+    /****************************************************************************
+    * Section: UI Elements
+    ****************************************************************************/
     [Header("Image")]
-    public Image radialProgressBar; // UI image used to display radial fill progress
+    public Image radialProgressBar;       // UI Image used for radial fill display
 
-    // Called when the script instance is being loaded
+    /****************************************************************************
+    * Function: Awake
+    *
+    * Description:
+    *   Called when the script instance is loaded. Retrieves the Image component
+    *   attached to this GameObject for use as the radial progress bar.
+    *
+    * Inputs:  None
+    * Outputs: None
+    ****************************************************************************/
     private void Awake()
     {
-        // Get the Image component attached to this GameObject
         radialProgressBar = GetComponent<Image>();
     }
 
-    // Activates the countdown and sets the timer
+    /****************************************************************************
+    * Function: ActivateCountdown
+    *
+    * Description:
+    *   Starts the countdown timer and initializes the maximum duration.
+    *
+    * Inputs:
+    *   float countdownTime - Duration of the countdown in seconds
+    *
+    * Outputs: None
+    ****************************************************************************/
     public void ActivateCountdown(float countdownTime)
     {
         isActive = true;
@@ -40,18 +68,27 @@ public class CircularProgressBar : MonoBehaviour
         indicatorTimer = maxIndicatorTimer;
     }
 
-    // Called once per frame
+    /****************************************************************************
+    * Function: Update
+    *
+    * Description:
+    *   Called once per frame. Updates the countdown timer, adjusts the radial
+    *   fill amount, and stops the countdown when the fries are finished.
+    *
+    * Inputs:  None
+    * Outputs: None
+    ****************************************************************************/
     private void Update()
     {
         if (isActive)
         {
-            // Decrease the timer based on time elapsed
+            // Reduce timer based on elapsed time
             indicatorTimer -= Time.deltaTime;
 
-            // Update the radial fill amount based on remaining time
-            radialProgressBar.fillAmount = (indicatorTimer / maxIndicatorTimer);
+            // Update radial fill (value between 0 and 1)
+            radialProgressBar.fillAmount = indicatorTimer / maxIndicatorTimer;
 
-            // If the fries are done, stop the countdown
+            // Stop countdown if fries are done
             if (manager.friesDone == true)
             {
                 StopCountdown();
@@ -59,10 +96,18 @@ public class CircularProgressBar : MonoBehaviour
         }
     }
 
-    // Stops the countdown and resets the progress bar
+    /****************************************************************************
+    * Function: StopCountdown
+    *
+    * Description:
+    *   Stops the countdown and resets the progress bar to full.
+    *
+    * Inputs:  None
+    * Outputs: None
+    ****************************************************************************/
     public void StopCountdown()
     {
-        radialProgressBar.fillAmount = 100; // Reset fill to full
+        radialProgressBar.fillAmount = 1f; // Reset fill to full
         isActive = false;
     }
 }
