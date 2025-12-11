@@ -33,6 +33,7 @@ public class order : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private GameObject orderTextObject; // UI text container
     [SerializeField] private GameObject orderObj;        // Order UI parent
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     private TextMeshProUGUI orderTxt;      // Text component for displaying orders
 
@@ -62,6 +63,7 @@ public class order : MonoBehaviour
     {
         orderTxt = orderTextObject.GetComponent<TextMeshProUGUI>();
         updateOrderText();
+        scoreText.gameObject.SetActive(false);
     }
 
     /****************************************************************************
@@ -245,15 +247,28 @@ public class order : MonoBehaviour
     private int CalculateScore(float timeTaken, int orderCount)
     {
         float baseScore = 100f;
-        float timePenalty = timeTaken * 0.5f;     // 0.5 points lost per second
-        float complexityBonus = orderCount * 10f; // Bonus per task
+        float timePenalty = timeTaken * 0.5f;
+        float complexityBonus = orderCount * 10f;
 
         float finalScore = baseScore + complexityBonus - timePenalty;
 
-        // Edge case: ensure complexity bonus is not lost
         if (finalScore == 0 && complexityBonus >= 10)
             finalScore += complexityBonus;
 
+        // Show score text
+        scoreText.gameObject.SetActive(true);
+        scoreText.text = "Final Score: " + finalScore;
+
+        // Hide after 2 seconds
+        StartCoroutine(HideScoreAfterDelay(2f));
+
         return Mathf.Max(0, Mathf.RoundToInt(finalScore));
     }
+
+    private IEnumerator HideScoreAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        scoreText.gameObject.SetActive(false);
+    }
+
 }
