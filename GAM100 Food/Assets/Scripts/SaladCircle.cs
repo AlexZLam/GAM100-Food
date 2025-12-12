@@ -14,15 +14,11 @@ using UnityEngine;
 
 public class SaladCircle : MonoBehaviour
 {
-    /****************************************************************************
-    * Section: Script References
-    ****************************************************************************/
+    
     [Header("Scripts")]
     public SaladMix _saladmix;     // Reference to the main SaladMix script
 
-    /****************************************************************************
-    * Section: State Flags
-    ****************************************************************************/
+ 
     [Header("Bools")]
     public bool _start = false;    // True when mixing has begun
 

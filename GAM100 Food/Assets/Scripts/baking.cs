@@ -16,9 +16,7 @@ using UnityEngine.UI;
 
 public class Baking : MonoBehaviour
 {
-    /****************************************************************************
-    * Section: Inspector References
-    ****************************************************************************/
+
 
     [Header("Scripts")]
     public camera_move camera_Move;   // Reference to camera movement script
@@ -33,9 +31,7 @@ public class Baking : MonoBehaviour
     [SerializeField]
     private RawImage dark;            // Overlay image that darkens during countdown
 
-    /****************************************************************************
-    * Section: Timing Variables
-    ****************************************************************************/
+
 
     [Header("Time")]
     private const float time = 5.0f;            // Total countdown duration
@@ -46,9 +42,7 @@ public class Baking : MonoBehaviour
     private bool isCountingDown = false; // Tracks whether countdown is active
     private float alpha;              // Alpha value for dark overlay
 
-    /****************************************************************************
-    * Section: UI Fade Variables
-    ****************************************************************************/
+
 
     [Header("Color Swap")]
     private Color newColor;           // Color used to fade overlay

@@ -15,9 +15,7 @@ using System.Collections.Generic;
 
 public class HelpManager : MonoBehaviour
 {
-    /****************************************************************************
-    * Section: Inspector References
-    ****************************************************************************/
+
     [SerializeField] private GameObject helpBaking;
     [SerializeField] private GameObject helpFry;
     [SerializeField] private GameObject helpBurger;
@@ -30,10 +28,7 @@ public class HelpManager : MonoBehaviour
     [SerializeField] private GameObject center; // Position where help panels appear
     [SerializeField] private Canvas canvas;     // Canvas used as parent for help panels
 
-    /****************************************************************************
-    * Section: Internal State
-    ****************************************************************************/
-    private camera_move cam;                   // Reference to camera movement script
+    [SerializeField]private camera_move cam;    // Reference to camera movement script
     private GameObject activeHelp;             // Currently displayed help panel
     private bool isHelp = false;               // True when help is toggled on
 
@@ -51,10 +46,6 @@ public class HelpManager : MonoBehaviour
     ****************************************************************************/
     void Start()
     {
-        // Locate the camera movement script in the scene
-        cam = FindObjectOfType<camera_move>();
-
-        // Create mapping between minigame objects and help panel prefabs
         helpMap = new Dictionary<GameObject, GameObject>
         {
             { cam.baking,    helpBaking },
@@ -66,6 +57,8 @@ public class HelpManager : MonoBehaviour
             { cam.milkshake, helpMilk }
         };
     }
+
+
 
     /****************************************************************************
     * Function: Update

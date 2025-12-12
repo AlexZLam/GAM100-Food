@@ -14,9 +14,7 @@ using UnityEngine;
 
 public class HomeStation : MonoBehaviour
 {
-    /****************************************************************************
-    * Section: Inspector References
-    ****************************************************************************/
+
 
     [Header("Home Station Object")]
     [SerializeField]

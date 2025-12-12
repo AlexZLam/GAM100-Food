@@ -15,9 +15,7 @@ using UnityEngine.UI;
 
 public class Milkshake : MonoBehaviour
 {
-    /****************************************************************************
-    * Section: Inspector References
-    ****************************************************************************/
+
     [Header("Scripts")]
     public camera_move camera_Move;          // Reference to camera movement script
 
@@ -37,9 +35,7 @@ public class Milkshake : MonoBehaviour
     [Header("Blender sprite animator")]
     public Animator milkshake_animator;      // Animator controlling blender animation
 
-    /****************************************************************************
-    * Section: Internal State
-    ****************************************************************************/
+
     private int click_counter;               // Number of clicks so far
     private float time_counter;              // Remaining time
     private bool game_started = false;       // True when the game is active

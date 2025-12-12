@@ -65,8 +65,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: First click the top center of the salad, then spin your mouse in a circle.
-    After every rotation, click the top center again. Repeat Until complete
+  m_text: First click the top center of the salad, then spin your mouse counter clockwise
+    . After every rotation, click the top center again. Repeat Until complete
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5b7fd4487e1d6a141b422a8baeb05a79, type: 2}
   m_sharedMaterial: {fileID: -9183531138995801206, guid: 5b7fd4487e1d6a141b422a8baeb05a79, type: 2}

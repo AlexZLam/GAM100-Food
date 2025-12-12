@@ -11,41 +11,36 @@
 *******************************************************************************/
 
 using UnityEngine;
+using System.Collections;
 using TMPro;
 using System.Collections.Generic;
 
 public class order : MonoBehaviour
 {
-    /****************************************************************************
-    * Section: Minigame Script References
-    ****************************************************************************/
     [Header("Minigame Scripts")]
     public Burger burgerScript;            // Reference to burger minigame
     public Milkshake milkshakeScript;      // Reference to milkshake minigame
     public Chopping choppingScript;        // Reference to chopping minigame
     public BurgerSmash smashScript;        // Reference to burger smash minigame
     public SaladMix saladScript;           // Reference to salad mixing minigame
+    public fries fryScript;
     public camera_move camera_Move;        // Reference to camera movement script
 
-    /****************************************************************************
-    * Section: UI Elements
-    ****************************************************************************/
+
     [Header("UI Elements")]
     [SerializeField] private GameObject orderTextObject; // UI text container
     [SerializeField] private GameObject orderObj;        // Order UI parent
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI completeText;
+
+
 
     private TextMeshProUGUI orderTxt;      // Text component for displaying orders
 
-    /****************************************************************************
-    * Section: Order Tracking
-    ****************************************************************************/
+
     private int randOrderNum;              // Number of tasks in the current order
     private List<string> activeOrders = new List<string>(); // List of tasks to complete
 
-    /****************************************************************************
-    * Section: Timer Tracking
-    ****************************************************************************/
     private float orderStartTime;          // Time when the order began
     private bool timerRunning = false;     // Tracks whether the timer is active
 
@@ -130,6 +125,7 @@ public class order : MonoBehaviour
                 case 3: activeOrders.Add("Milkshake"); break;
                 case 4: activeOrders.Add("Chopping"); break;
                 case 5: activeOrders.Add("Burger Smash"); break;
+                case 6: activeOrders.Add("Fries"); break;
             }
         }
 
@@ -200,35 +196,71 @@ public class order : MonoBehaviour
     {
         if (activeOrders.Contains("Burger") && burgerScript.Burgerdone)
         {
-            burgerScript.Burgerdone = false;
-            activeOrders.Remove("Burger");
+            burgerScript.Burgerdone = false; 
+            activeOrders.Remove("Burger"); 
             updateOrderText();
+
+            if (!AllOrdersCompleted())
+                StartCoroutine(ShowCompletePopup());
         }
         if (activeOrders.Contains("Salad") && saladScript._saladmix_done)
         {
             saladScript._saladmix_done = false;
             activeOrders.Remove("Salad");
             updateOrderText();
+
+            if (!AllOrdersCompleted())
+                StartCoroutine(ShowCompletePopup());
         }
+
         if (activeOrders.Contains("Milkshake") && milkshakeScript.milkshake_done)
         {
             milkshakeScript.milkshake_done = false;
             activeOrders.Remove("Milkshake");
             updateOrderText();
+
+            if (!AllOrdersCompleted())
+                StartCoroutine(ShowCompletePopup());
         }
+
         if (activeOrders.Contains("Chopping") && choppingScript.chopping_done)
         {
             choppingScript.chopping_done = false;
             activeOrders.Remove("Chopping");
             updateOrderText();
+
+            if (!AllOrdersCompleted())
+                StartCoroutine(ShowCompletePopup());
         }
+
         if (activeOrders.Contains("Burger Smash") && smashScript.BurgerSmashDone)
         {
             smashScript.BurgerSmashDone = false;
             activeOrders.Remove("Burger Smash");
             updateOrderText();
+
+            if (!AllOrdersCompleted())
+                StartCoroutine(ShowCompletePopup());
         }
+        if (activeOrders.Contains("Fries") && fryScript.friesDone)
+        {
+            fryScript.friesDone = false;
+            activeOrders.Remove("Fries");
+            updateOrderText();
+
+            if (!AllOrdersCompleted())
+                StartCoroutine(ShowCompletePopup());
+        }
+
     }
+    private IEnumerator ShowCompletePopup()
+    {
+        completeText.gameObject.SetActive(true);
+        completeText.text = "Complete!";
+        yield return new WaitForSeconds(1f);
+        completeText.gameObject.SetActive(false);
+    }
+
 
     /****************************************************************************
     * Function: CalculateScore

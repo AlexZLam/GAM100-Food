@@ -16,9 +16,7 @@ using UnityEngine.UI;
 
 public class BurgerSmash : MonoBehaviour
 {
-    /****************************************************************************
-    * Section: Inspector References
-    ****************************************************************************/
+
     [Header("Scripts")]
     public camera_move camera_Move;                 // Reference to camera movement script
 
@@ -40,9 +38,6 @@ public class BurgerSmash : MonoBehaviour
     [Header("Game State")]
     public bool BurgerSmashDone;                   // True when the minigame is successfully completed
 
-    /****************************************************************************
-    * Section: Internal Variables
-    ****************************************************************************/
     private float _direction = 1f;                 // Current movement direction (1 = right, -1 = left)
     private Vector3 _targetposition;               // Current target position for pointer movement
 
@@ -125,7 +120,7 @@ public class BurgerSmash : MonoBehaviour
         if (RectTransformUtility.RectangleContainsScreenPoint(_safezone, _pointertransform.position, null))
         {
             // Only count success if the game is actively running
-            if (_movespeed == 2000f)
+            if (_movespeed == 3000f)
             {
                 _movespeed = 0f;
                 Debug.Log("Success!");
@@ -149,6 +144,6 @@ public class BurgerSmash : MonoBehaviour
     ****************************************************************************/
     private void ButtonPress()
     {
-        _movespeed = 2000f; // Begin pointer movement
+        _movespeed = 3000f; // Begin pointer movement
     }
 }

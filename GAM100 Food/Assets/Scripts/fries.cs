@@ -16,23 +16,17 @@ using UnityEngine.UI;
 
 public class fries : MonoBehaviour
 {
-    /****************************************************************************
-    * Section: Script References
-    ****************************************************************************/
+
     [Header("Scripts")]
     public camera_move camera_Move;            // Reference to camera movement script
     public CircularProgressBar progressBar;    // Circular progress bar for fry timer
 
-    /****************************************************************************
-    * Section: Game Objects
-    ****************************************************************************/
+
     [Header("Game Object")]
     public GameObject energizedEffect;         // Visual effect when energized
     public GameObject ParentObject;            // Parent object for fries minigame UI
 
-    /****************************************************************************
-    * Section: State Flags
-    ****************************************************************************/
+
     [Header("Is Active")]
     public bool isEnergized;                   // True while energized effect is active
 
@@ -46,9 +40,7 @@ public class fries : MonoBehaviour
     public bool friesDone;                     // True when fries are successfully completed
     private bool itStarted = false;            // True when countdown has begun
 
-    /****************************************************************************
-    * Section: Sprites & Visuals
-    ****************************************************************************/
+
     [SerializeField] private Sprite perfect;   // Perfectly cooked fries
     [SerializeField] private Sprite burnt;     // Burnt fries
     [SerializeField] private Sprite under;     // Undercooked fries
@@ -72,11 +64,7 @@ public class fries : MonoBehaviour
         // Show or hide the fries minigame depending on camera focus
         ParentObject.SetActive(camera_Move.current_game == camera_Move.fries);
 
-        /************************************************************************
-        * IMPORTANT NOTE:
-        *   This listener is added EVERY FRAME, which causes stacking callbacks.
-        *   It should be moved to Start(), but logic is preserved here as requested.
-        ************************************************************************/
+
         button.onClick.AddListener(() =>
         {
             // SUCCESS: Fries are perfectly cooked (very low fill amount)

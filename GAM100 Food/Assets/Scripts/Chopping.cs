@@ -15,9 +15,7 @@ using UnityEngine;
 
 public class Chopping : MonoBehaviour
 {
-    /****************************************************************************
-    * Section: Inspector References
-    ****************************************************************************/
+
     [Header("Scripts")]
     public camera_move camera_Move;              // Reference to camera movement script
 
@@ -34,9 +32,7 @@ public class Chopping : MonoBehaviour
     [Header("Tolerance")]
     public float slice_tolerance = 15f;          // Allowed distance from slice point for a valid chop
 
-    /****************************************************************************
-    * Section: Internal State
-    ****************************************************************************/
+
     private int chops_current = 0;               // Number of successful chops so far
     private bool[] slice_bools;                  // Tracks which slice positions have been chopped
     private float[] slice_positions;             // X positions of valid slice points

@@ -15,9 +15,7 @@ using UnityEngine;
 
 public class camera_move : MonoBehaviour
 {
-    /****************************************************************************
-    * Section: Inspector References
-    ****************************************************************************/
+
 
     [Header("Current Game Reference")]
     public GameObject current_game;

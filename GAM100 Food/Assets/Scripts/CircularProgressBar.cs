@@ -16,22 +16,15 @@ using UnityEngine.UI;
 
 public class CircularProgressBar : MonoBehaviour
 {
-    /****************************************************************************
-    * Section: Script References
-    ****************************************************************************/
+
     [Header("Scripts")]
     public fries manager;                 // Reference to the fries minigame manager
 
-    /****************************************************************************
-    * Section: Countdown State
-    ****************************************************************************/
     private bool isActive = false;        // True when the countdown is running
     private float indicatorTimer;         // Current countdown time
     private float maxIndicatorTimer;      // Maximum countdown duration
 
-    /****************************************************************************
-    * Section: UI Elements
-    ****************************************************************************/
+
     [Header("Image")]
     public Image radialProgressBar;       // UI Image used for radial fill display
 

@@ -15,17 +15,12 @@ using UnityEngine;
 
 public class SaladMix : MonoBehaviour
 {
-    /****************************************************************************
-    * Section: Script References
-    ****************************************************************************/
+
     [Header("Scripts")]
     public camera_move camera_Move;      // Reference to camera movement script
     public SaladCircle5 _saladcircle5;   // Reference to final circle trigger
     public SaladCircle _saladcircle;     // Reference to initial circle trigger
 
-    /****************************************************************************
-    * Section: Checkpoint Objects
-    ****************************************************************************/
     [Header("Points")]
     [SerializeField] private GameObject _start;
     [SerializeField] private GameObject _position1;
@@ -34,29 +29,20 @@ public class SaladMix : MonoBehaviour
     [SerializeField] private GameObject _position4;
     [SerializeField] private GameObject _position5;
 
-    /****************************************************************************
-    * Section: Parent Object
-    ****************************************************************************/
+
     [Header("ParentObjects")]
     [SerializeField] private GameObject _parentobject; // UI container for minigame
 
-    /****************************************************************************
-    * Section: Mouse Tracking
-    ****************************************************************************/
     [Header("Mouse Cords")]
     [SerializeField] private Vector3 _screenposition;
     [SerializeField] private Vector3 _worldposition;
 
-    /****************************************************************************
-    * Section: Prefab Hitbox
-    ****************************************************************************/
+
     [Header("Prefab")]
     [SerializeField] private GameObject _prefab; // Prefab used as mouse hitbox
     private GameObject _prefab2;                // Instantiated hitbox
 
-    /****************************************************************************
-    * Section: Game State
-    ****************************************************************************/
+
     [Header("Done")]
     public bool _saladmix_done = false;         // True when minigame is completed
 

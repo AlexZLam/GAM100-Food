@@ -15,20 +15,12 @@ using UnityEngine;
 
 public class BurgerDestroy : MonoBehaviour
 {
-    /****************************************************************************
-    * Section: Inspector References
-    ****************************************************************************/
+
     [Header("References")]
     [SerializeField] private GameObject plate;   // Reference to the plate object
     public Burger burgereScript;                // Reference to the main Burger script
 
-    /****************************************************************************
-    * Section: Ingredient Flags
-    *
-    * Description:
-    *   These flags identify which ingredient this object represents. They may
-    *   be used by other scripts for validation or ordering.
-    ****************************************************************************/
+
     [Header("Ingredient State Flags")]
     public bool bun1;
     public bool bun;
@@ -37,9 +29,6 @@ public class BurgerDestroy : MonoBehaviour
     public bool cheese;
     public bool onion;
 
-    /****************************************************************************
-    * Section: Internal State Tracking
-    ****************************************************************************/
     private bool onPlate = false;               // True if ingredient is snapped to the plate
     private bool fell = false;                  // True if ingredient has fallen off
     private bool isDestroyed = false;           // Reserved for future destruction logic
@@ -112,7 +101,6 @@ public class BurgerDestroy : MonoBehaviour
         // If the burger is marked as done, simulate a fall and reset all ingredients
         if (burgereScript.Burgerdone == true)
         {
-            fell = true;
             RemoveAllFromPlate();
             burgereScript?.OnIngredientFell();
             burgereScript.Burgerdone = false;
