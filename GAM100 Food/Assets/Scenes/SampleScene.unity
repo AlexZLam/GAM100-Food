@@ -6502,7 +6502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1224701635
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7803,6 +7803,7 @@ MonoBehaviour:
   choppingScript: {fileID: 1502168880}
   smashScript: {fileID: 1502168876}
   saladScript: {fileID: 1502168879}
+  fryScript: {fileID: 0}
   camera_Move: {fileID: 2095876017}
   orderTextObject: {fileID: 223671050}
   orderObj: {fileID: 1336998507}
