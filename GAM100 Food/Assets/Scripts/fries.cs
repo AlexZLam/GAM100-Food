@@ -53,7 +53,7 @@ public class fries : MonoBehaviour
     * Function: Update
     *
     * Description:
-    *   Called once per frame. Handles UI visibility based on camera position,
+    *   Handles UI visibility based on camera position,
     *   processes button interactions, and checks for burnt fries.
     *
     * Inputs:  None

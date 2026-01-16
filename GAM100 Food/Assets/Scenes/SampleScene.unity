@@ -7729,7 +7729,7 @@ MonoBehaviour:
   start_button: {fileID: 1577952034}
   milkshake: {fileID: 153182348}
   timer: 10
-  click_goal: 60
+  click_goal: 50
   milkshake_animator: {fileID: 32065372}
   milkshake_done: 0
 --- !u!114 &1502168879

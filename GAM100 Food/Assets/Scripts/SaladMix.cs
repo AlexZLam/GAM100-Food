@@ -54,17 +54,8 @@ public class SaladMix : MonoBehaviour
     [SerializeField] private int _saladmix_loops_count = 5;       // Required loops to win
     [SerializeField] private int _saladmix_fail_loop_count = 1;   // Fail threshold
 
-    /****************************************************************************
-    * Function: Awake
-    *
-    * Description:
-    *   Instantiates a hitbox prefab used to detect mouse collisions with the
-    *   salad circles. The hitbox follows the mouse each frame.
-    *
-    * Inputs:  None
-    * Outputs: None
-    ****************************************************************************/
-    private void Awake()
+    
+    private void Awake()//Instantiates hitboxes 
     {
         _prefab2 = Instantiate(_prefab, Vector3.zero, Quaternion.identity);
         _prefab2.SetActive(false);
@@ -134,33 +125,15 @@ public class SaladMix : MonoBehaviour
         }
     }
 
-    /****************************************************************************
-    * Function: TimeDelay
-    *
-    * Description:
-    *   Waits for a specified delay before triggering a failure event.
-    *
-    * Inputs:
-    *   float delay - Time to wait before calling Time()
-    *
-    * Outputs: None
-    ****************************************************************************/
-    IEnumerator TimeDelay(float delay)
+    
+    IEnumerator TimeDelay(float delay)//Waits for a specified delay before triggering a failure event.
     {
         yield return new WaitForSeconds(delay);
         Time();
     }
 
-    /****************************************************************************
-    * Function: Time
-    *
-    * Description:
-    *   Handles failure logic when the player stops mixing or takes too long.
-    *
-    * Inputs:  None
-    * Outputs: None
-    ****************************************************************************/
-    private void Time()
+
+    private void Time()//Handles failure logic when the player stops mixing or takes too long.
     {
         Debug.Log("Failed");
         _saladcircle._start = false;

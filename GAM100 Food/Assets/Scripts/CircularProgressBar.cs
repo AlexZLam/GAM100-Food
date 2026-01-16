@@ -28,32 +28,11 @@ public class CircularProgressBar : MonoBehaviour
     [Header("Image")]
     public Image radialProgressBar;       // UI Image used for radial fill display
 
-    /****************************************************************************
-    * Function: Awake
-    *
-    * Description:
-    *   Called when the script instance is loaded. Retrieves the Image component
-    *   attached to this GameObject for use as the radial progress bar.
-    *
-    * Inputs:  None
-    * Outputs: None
-    ****************************************************************************/
     private void Awake()
     {
         radialProgressBar = GetComponent<Image>();
     }
 
-    /****************************************************************************
-    * Function: ActivateCountdown
-    *
-    * Description:
-    *   Starts the countdown timer and initializes the maximum duration.
-    *
-    * Inputs:
-    *   float countdownTime - Duration of the countdown in seconds
-    *
-    * Outputs: None
-    ****************************************************************************/
     public void ActivateCountdown(float countdownTime)
     {
         isActive = true;
@@ -65,7 +44,7 @@ public class CircularProgressBar : MonoBehaviour
     * Function: Update
     *
     * Description:
-    *   Called once per frame. Updates the countdown timer, adjusts the radial
+    *    Updates the countdown timer, adjusts the radial
     *   fill amount, and stops the countdown when the fries are finished.
     *
     * Inputs:  None
@@ -89,15 +68,6 @@ public class CircularProgressBar : MonoBehaviour
         }
     }
 
-    /****************************************************************************
-    * Function: StopCountdown
-    *
-    * Description:
-    *   Stops the countdown and resets the progress bar to full.
-    *
-    * Inputs:  None
-    * Outputs: None
-    ****************************************************************************/
     public void StopCountdown()
     {
         radialProgressBar.fillAmount = 1f; // Reset fill to full

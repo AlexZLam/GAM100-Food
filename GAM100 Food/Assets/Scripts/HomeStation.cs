@@ -23,26 +23,13 @@ public class HomeStation : MonoBehaviour
     [Header("Camera Controller")]
     public camera_move camera_Move; // Reference to the camera movement script
 
-    /****************************************************************************
-    * Function: Start
-    *
-    * Description:
-    *   Called before the first frame update. Currently unused, but available
-    *   for initialization logic if needed in the future.
-    *
-    * Inputs:  None
-    * Outputs: None
-    ****************************************************************************/
-    void Start()
-    {
-        // Reserved for future initialization
-    }
+
 
     /****************************************************************************
     * Function: Update
     *
     * Description:
-    *   Called once per frame. Checks whether the camera is focused on the Home
+    *   Checks whether the camera is focused on the Home
     *   station and updates the station's visibility accordingly.
     *
     * Inputs:  None

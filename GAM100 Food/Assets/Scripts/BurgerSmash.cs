@@ -41,16 +41,7 @@ public class BurgerSmash : MonoBehaviour
     private float _direction = 1f;                 // Current movement direction (1 = right, -1 = left)
     private Vector3 _targetposition;               // Current target position for pointer movement
 
-    /****************************************************************************
-    * Function: Start
-    *
-    * Description:
-    *   Initializes the pointer's first movement target. Called before the first
-    *   frame update.
-    *
-    * Inputs:  None
-    * Outputs: None
-    ****************************************************************************/
+
     private void Start()
     {
         _targetposition = _pointb.position; // Begin by moving toward point B
@@ -133,15 +124,7 @@ public class BurgerSmash : MonoBehaviour
         }
     }
 
-    /****************************************************************************
-    * Function: ButtonPress
-    *
-    * Description:
-    *   Starts the minigame by setting the pointer's movement speed.
-    *
-    * Inputs:  None
-    * Outputs: None
-    ****************************************************************************/
+
     private void ButtonPress()
     {
         _movespeed = 3000f; // Begin pointer movement

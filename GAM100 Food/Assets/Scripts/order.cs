@@ -297,7 +297,7 @@ public class order : MonoBehaviour
         return Mathf.Max(0, Mathf.RoundToInt(finalScore));
     }
 
-    private IEnumerator HideScoreAfterDelay(float delay)
+    private IEnumerator HideScoreAfterDelay(float delay)//sets visibilty for order
     {
         yield return new WaitForSeconds(delay);
         scoreText.gameObject.SetActive(false);

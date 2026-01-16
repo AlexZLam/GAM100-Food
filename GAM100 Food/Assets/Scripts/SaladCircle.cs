@@ -26,7 +26,6 @@ public class SaladCircle : MonoBehaviour
     * Function: OnTriggerStay2D
     *
     * Description:
-    *   Called every frame while another collider stays inside this trigger.
     *   If the player is holding the left mouse button, the salad mixing
     *   sequence begins and the fail loop counter is reset.
     *
