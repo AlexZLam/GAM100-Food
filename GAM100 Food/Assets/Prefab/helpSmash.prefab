@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Click the button when the line is in the center of the bar
+  m_text: press space when the line is in the center of the bar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5b7fd4487e1d6a141b422a8baeb05a79, type: 2}
   m_sharedMaterial: {fileID: -9183531138995801206, guid: 5b7fd4487e1d6a141b422a8baeb05a79, type: 2}
