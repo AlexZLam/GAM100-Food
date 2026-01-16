@@ -27,20 +27,6 @@ public class camera_move : MonoBehaviour
                       chopping, baking, fries, smash;
     // References to all game area objects the camera can move to
 
-    /****************************************************************************
-    * Function: Start
-    *
-    * Description:
-    *   Called before the first frame update. Currently unused, but available for
-    *   initialization logic if needed in the future.
-    *
-    * Inputs:  None
-    * Outputs: None
-    ****************************************************************************/
-    void Start()
-    {
-        // Reserved for future initialization
-    }
 
     /****************************************************************************
     * Function: Update

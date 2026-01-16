@@ -42,16 +42,7 @@ public class Chopping : MonoBehaviour
     private bool game_started;                   // True when the minigame is active
     private bool knife_currently_chopping = false; // True while knife is animating downward
 
-    /****************************************************************************
-    * Function: Start
-    *
-    * Description:
-    *   Initializes slice positions, tolerance, and game state. Called before the
-    *   first frame update.
-    *
-    * Inputs:  None
-    * Outputs: None
-    ****************************************************************************/
+
     void Start()
     {
         knife_start_height = knife.transform.position.y;

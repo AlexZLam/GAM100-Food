@@ -51,17 +51,8 @@ public class Baking : MonoBehaviour
 
     public bool BakingDone;           // Indicates whether baking was successful
 
-    /****************************************************************************
-    * Function: Start
-    *
-    * Description:
-    *   Initializes references, sets up UI values, and registers the button
-    *   click event. Called once before the first frame update.
-    *
-    * Inputs:  None
-    * Outputs: None
-    ****************************************************************************/
-    void Start()
+ 
+    void Start()//intializes slider and set values
     {
         // Retrieve slider and canvas group components
         sliderComponent = slider.GetComponent<Slider>();
@@ -83,9 +74,8 @@ public class Baking : MonoBehaviour
     /****************************************************************************
     * Function: Update
     *
-    * Description:
-    *   Called once per frame. Updates countdown logic, UI fading, and determines
-    *   whether the baking UI should be visible based on camera focus.
+    *   Description:Updates countdown logic, UI fading, and determines
+    *   whether the baking UI should be visible
     *
     * Inputs:  None
     * Outputs: None
@@ -172,32 +162,13 @@ public class Baking : MonoBehaviour
         }
     }
 
-    /****************************************************************************
-    * Function: setBakingActive
-    *
-    * Description:
-    *   Shows or hides the baking UI depending on whether the camera is focused
-    *   on the baking minigame.
-    *
-    * Inputs:  None
-    * Outputs: None
-    ****************************************************************************/
-    private void setBakingActive()
+
+    private void setBakingActive()//controls baking visibilty
     {
         baking.SetActive(camera_Move.current_game == camera_Move.baking);
     }
 
-    /****************************************************************************
-    * Function: Finished
-    *
-    * Description:
-    *   Resets UI elements after the baking minigame is completed, restoring
-    *   slider visibility and clearing the dark overlay.
-    *
-    * Inputs:  None
-    * Outputs: None
-    ****************************************************************************/
-    public void Finished()
+    public void Finished()//Changes color of slider
     {
         sliderGroup.alpha = 1;
         dark.color = new Color(newColor.r, newColor.g, newColor.b, 0);

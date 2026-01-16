@@ -35,7 +35,7 @@ public class BurgerDestroy : MonoBehaviour
     private Vector3 platePos;                   // Cached plate position for snapping
 
     /****************************************************************************
-    * Function: RemoveAllFromPlate (static)
+    * Function: RemoveAllFromPlate 
     *
     * Description:
     *   Removes all burger ingredients from the plate by clearing their onPlate
@@ -53,16 +53,7 @@ public class BurgerDestroy : MonoBehaviour
         }
     }
 
-    /****************************************************************************
-    * Function: RemoveFromPlate
-    *
-    * Description:
-    *   Removes this ingredient from the plate by clearing its onPlate flag.
-    *
-    * Inputs:  None
-    * Outputs: None
-    ****************************************************************************/
-    public void RemoveFromPlate()
+    public void RemoveFromPlate()//Removes Ingredients from plate
     {
         onPlate = false;
     }

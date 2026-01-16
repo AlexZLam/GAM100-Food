@@ -41,16 +41,6 @@ public class Milkshake : MonoBehaviour
     private bool game_started = false;       // True when the game is active
     public bool milkshake_done = false;      // True when the minigame is successfully completed
 
-    /****************************************************************************
-    * Function: Start
-    *
-    * Description:
-    *   Initializes the timer and registers button listeners for starting the
-    *   game and counting clicks.
-    *
-    * Inputs:  None
-    * Outputs: None
-    ****************************************************************************/
     void Start()
     {
         // Initialize countdown timer
@@ -65,7 +55,7 @@ public class Milkshake : MonoBehaviour
     * Function: Update
     *
     * Description:
-    *   Called once per frame. Handles countdown logic, loss condition, and
+    *  Handles countdown logic, loss condition, and
     *   toggles visibility based on camera position.
     *
     * Inputs:  None
@@ -154,16 +144,7 @@ public class Milkshake : MonoBehaviour
                   " clicks in " + time_counter + " seconds to win!");
     }
 
-    /****************************************************************************
-    * Function: setMilkshakeActive
-    *
-    * Description:
-    *   Shows or hides the milkshake minigame UI depending on whether the camera
-    *   is currently focused on the milkshake station.
-    *
-    * Inputs:  None
-    * Outputs: None
-    ****************************************************************************/
+
     private void setMilkshakeActive()
     {
         milkshake.SetActive(camera_Move.current_game == camera_Move.milkshake);
